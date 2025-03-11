@@ -837,37 +837,6 @@
             font-size: 0.8rem;
         }
         
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            z-index: 99;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .back-to-top:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-        
         /* Pagination styles */
         .pagination {
             display: flex;
@@ -922,6 +891,65 @@
         .hamburger.active .hamburger-line:nth-child(3) {
             transform: rotate(-45deg);
             top: 10px;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .blog-listings {
+            display: block;
+        }
+        
+        .single-blog-post {
+            display: none;
+        }
+        
+        .blog-back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .blog-back-button:before {
+            content: "←";
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .blog-back-button:hover {
+            transform: translateX(-5px);
         }
         
         @media (max-width: 768px) {
@@ -982,6 +1010,14 @@
             .blog-post-navigation-item {
                 max-width: 100%;
             }
+            
+            .blog-post-header {
+                height: 250px;
+            }
+            
+            .blog-post-header h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -1026,7 +1062,7 @@
                 <li><a href="index.html#stories">Survivor Stories</a></li>
                 <li><a href="index.html#dogs">Our Dogs</a></li>
                 <li><a href="index.html#impact">Our Impact</a></li>
-                <li><a href="blog.html">Blog</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
                 <li><a href="index.html#about">About Us</a></li>
                 <li><a href="index.html#donate">Donate</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
@@ -1035,164 +1071,596 @@
     </nav>
     
     <section id="blog">
-        <h2>Blog & Resources</h2>
-        <p>Stay informed about service dog training, trauma recovery, and Valiant Heart Companions updates through our blog.</p>
-        
-        <div class="blog-categories">
-            <div class="blog-category active">All Posts</div>
-            <div class="blog-category">Training Tips</div>
-            <div class="blog-category">Trauma Recovery</div>
-            <div class="blog-category">Success Stories</div>
-            <div class="blog-category">News & Events</div>
-        </div>
-        
-        <div class="blog-layout">
-            <div class="blog-main">
-                <div class="blog-posts">
-                    <div class="blog-post">
-                        <div class="blog-post-image" style="background-image: url('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="blog-post-content">
-                            <h3>The Science Behind Service Dogs for PTSD</h3>
-                            <div class="blog-post-date">March 5, 2025</div>
-                            <div class="blog-post-excerpt">
-                                <p>Recent research is shedding light on why service dogs are so effective for trauma survivors. Beyond the emotional support they provide, these dogs offer physiological benefits that can help regulate stress responses in the body.</p>
-                                <p>Studies show that positive interactions with dogs can increase oxytocin levels while decreasing cortisol, creating a biological foundation for healing.</p>
+        <!-- Blog listings view -->
+        <div id="blog-listings" class="blog-listings">
+            <h2>Blog & Resources</h2>
+            <p>Stay informed about service dog training, trauma recovery, and Valiant Heart Companions updates through our blog.</p>
+            
+            <div class="blog-categories">
+                <div class="blog-category active">All Posts</div>
+                <div class="blog-category">Training Tips</div>
+                <div class="blog-category">Trauma Recovery</div>
+                <div class="blog-category">Success Stories</div>
+                <div class="blog-category">News & Events</div>
+            </div>
+            
+            <div class="blog-layout">
+                <div class="blog-main">
+                    <div class="blog-posts">
+                        <div class="blog-post">
+                            <div class="blog-post-image" style="background-image: url('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                            <div class="blog-post-content">
+                                <h3>The Science Behind Service Dogs for PTSD</h3>
+                                <div class="blog-post-date">March 5, 2025</div>
+                                <div class="blog-post-excerpt">
+                                    <p>Recent research is shedding light on why service dogs are so effective for trauma survivors. Beyond the emotional support they provide, these dogs offer physiological benefits that can help regulate stress responses in the body.</p>
+                                    <p>Studies show that positive interactions with dogs can increase oxytocin levels while decreasing cortisol, creating a biological foundation for healing.</p>
+                                </div>
+                                <button class="btn read-more-btn" data-post="science">Read More</button>
                             </div>
-                            <a href="blog-post-science.html" class="btn">Read More</a>
+                        </div>
+                        
+                        <div class="blog-post">
+                            <div class="blog-post-image" style="background-image: url('https://images.unsplash.com/photo-1541599468348-e96984315921?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                            <div class="blog-post-content">
+                                <h3>Understanding the ADA: Service Dog Rights & Responsibilities</h3>
+                                <div class="blog-post-date">February 20, 2025</div>
+                                <div class="blog-post-excerpt">
+                                    <p>Navigating public spaces with a service dog means understanding both your rights and responsibilities under the Americans with Disabilities Act (ADA).</p>
+                                    <p>This comprehensive guide breaks down where service dogs are allowed, what businesses can and cannot ask, and how to handle access challenges appropriately.</p>
+                                </div>
+                                <button class="btn read-more-btn" data-post="ada">Read More</button>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-post">
+                            <div class="blog-post-image" style="background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                            <div class="blog-post-content">
+                                <h3>From Puppy to Partner: Our Training Methodology</h3>
+                                <div class="blog-post-date">January 15, 2025</div>
+                                <div class="blog-post-excerpt">
+                                    <p>What does it take to transform a puppy into a specialized service dog for trauma survivors? Our head trainer explains our 18-month progressive training program.</p>
+                                    <p>Learn about how we select puppies with the right temperament, the critical socialization period, and the specialized task training that prepares them for their important work.</p>
+                                </div>
+                                <button class="btn read-more-btn" data-post="training">Read More</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="blog-post">
-                        <div class="blog-post-image" style="background-image: url('https://images.unsplash.com/photo-1541599468348-e96984315921?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="blog-post-content">
-                            <h3>Understanding the ADA: Service Dog Rights & Responsibilities</h3>
-                            <div class="blog-post-date">February 20, 2025</div>
-                            <div class="blog-post-excerpt">
-                                <p>Navigating public spaces with a service dog means understanding both your rights and responsibilities under the Americans with Disabilities Act (ADA).</p>
-                                <p>This comprehensive guide breaks down where service dogs are allowed, what businesses can and cannot ask, and how to handle access challenges appropriately.</p>
-                            </div>
-                            <a href="blog-post-ada.html" class="btn">Read More</a>
-                        </div>
-                    </div>
-                    
-                    <div class="blog-post">
-                        <div class="blog-post-image" style="background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="blog-post-content">
-                            <h3>From Puppy to Partner: Our Training Methodology</h3>
-                            <div class="blog-post-date">January 15, 2025</div>
-                            <div class="blog-post-excerpt">
-                                <p>What does it take to transform a puppy into a specialized service dog for trauma survivors? Our head trainer explains our 18-month progressive training program.</p>
-                                <p>Learn about how we select puppies with the right temperament, the critical socialization period, and the specialized task training that prepares them for their important work.</p>
-                            </div>
-                            <a href="blog-post-training.html" class="btn">Read More</a>
-                        </div>
+                    <div class="pagination">
+                        <span class="current-page">Page 1 of 3</span>
+                        <a href="#" class="btn btn-primary">Older Posts →</a>
                     </div>
                 </div>
                 
-                <div class="pagination">
-                    <span class="current-page">Page 1 of 3</span>
-                    <a href="#" class="btn btn-primary">Older Posts →</a>
+                <div class="blog-aside">
+                    <div class="blog-sidebar">
+                        <h3>Search</h3>
+                        <form class="search-form">
+                            <input type="text" class="search-input" placeholder="Search blog posts...">
+                            <button type="submit" class="search-button">🔍</button>
+                        </form>
+                    </div>
+                    
+                    <div class="blog-sidebar">
+                        <h3>Recent Posts</h3>
+                        <div class="recent-posts">
+                            <div class="recent-post">
+                                <div class="recent-post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1554456854-55a089fd4cb2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80');"></div>
+                                <div class="recent-post-info">
+                                    <a href="#" class="recent-post-title recent-post-link" data-post="hypervigilance">Understanding Hypervigilance and How Service Dogs Help</a>
+                                    <div class="recent-post-date">March 1, 2025</div>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <div class="recent-post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1531844251246-9a1bfaae09fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80');"></div>
+                                <div class="recent-post-info">
+                                    <a href="#" class="recent-post-title recent-post-link" data-post="fundraiser">Upcoming Spring Fundraiser: Save the Date!</a>
+                                    <div class="recent-post-date">February 28, 2025</div>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <div class="recent-post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80');"></div>
+                                <div class="recent-post-info">
+                                    <a href="#" class="recent-post-title recent-post-link" data-post="therapy">Trauma-Informed Care: Working with Therapists</a>
+                                    <div class="recent-post-date">February 15, 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-sidebar">
+                        <h3>Categories</h3>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Training Tips (12)</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Trauma Recovery (8)</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Success Stories (10)</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">News & Events (6)</a></li>
+                            <li><a href="#" style="color: var(--primary); text-decoration: none;">Research Updates (4)</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="blog-sidebar">
+                        <h3>Resources</h3>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Service Dog FAQ</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Application Process</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Training Resources for Handlers</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Educational Materials for Businesses</a></li>
+                            <li><a href="#" style="color: var(--primary); text-decoration: none;">Trauma Recovery Resources</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="blog-sidebar">
+                        <h3>Tags</h3>
+                        <div class="tag-cloud">
+                            <a href="#" class="tag-cloud-tag">Service Dogs</a>
+                            <a href="#" class="tag-cloud-tag">PTSD</a>
+                            <a href="#" class="tag-cloud-tag">Training</a>
+                            <a href="#" class="tag-cloud-tag">Anxiety</a>
+                            <a href="#" class="tag-cloud-tag">ADA</a>
+                            <a href="#" class="tag-cloud-tag">Recovery</a>
+                            <a href="#" class="tag-cloud-tag">Therapy</a>
+                            <a href="#" class="tag-cloud-tag">Support</a>
+                            <a href="#" class="tag-cloud-tag">Mental Health</a>
+                            <a href="#" class="tag-cloud-tag">Research</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-sidebar">
+                        <h3>Archives</h3>
+                        <ul class="archives-list">
+                            <li class="archives-list-item">
+                                <a href="#" class="archives-list-link">March 2025</a>
+                                <span class="archives-list-count">4</span>
+                            </li>
+                            <li class="archives-list-item">
+                                <a href="#" class="archives-list-link">February 2025</a>
+                                <span class="archives-list-count">6</span>
+                            </li>
+                            <li class="archives-list-item">
+                                <a href="#" class="archives-list-link">January 2025</a>
+                                <span class="archives-list-count">5</span>
+                            </li>
+                            <li class="archives-list-item">
+                                <a href="#" class="archives-list-link">December 2024</a>
+                                <span class="archives-list-count">3</span>
+                            </li>
+                            <li class="archives-list-item">
+                                <a href="#" class="archives-list-link">November 2024</a>
+                                <span class="archives-list-count">4</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Single blog post view - Science article -->
+        <div id="blog-post-science" class="single-blog-post">
+            <a href="#" class="blog-back-button">Back to Blog</a>
+            
+            <div class="blog-post-header" style="background-image: url('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');">
+                <div class="blog-post-header-content">
+                    <h1>The Science Behind Service Dogs for PTSD</h1>
+                    <div class="blog-post-meta">
+                        <span class="blog-post-meta-item blog-post-meta-date">March 5, 2025</span>
+                        <span class="blog-post-meta-item blog-post-meta-author">Dr. Emma Richardson</span>
+                        <span class="blog-post-meta-item blog-post-meta-category">Research Updates</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="blog-aside">
-                <div class="blog-sidebar">
-                    <h3>Search</h3>
-                    <form class="search-form">
-                        <input type="text" class="search-input" placeholder="Search blog posts...">
-                        <button type="submit" class="search-button">🔍</button>
-                    </form>
+            <div class="blog-post-body">
+                <p>Recent research is shedding light on why service dogs are so effective for trauma survivors. Beyond the emotional support they provide, these dogs offer physiological benefits that can help regulate stress responses in the body.</p>
+                
+                <h2>The Biochemistry of Trauma</h2>
+                
+                <p>Trauma, particularly from sexual assault, can fundamentally alter how the brain and body respond to stress. The autonomic nervous system becomes dysregulated, often stuck in a state of hyperarousal characterized by elevated cortisol levels, increased heart rate, and heightened vigilance. These physiological changes can persist long after the traumatic event, contributing to the symptoms of Post-Traumatic Stress Disorder (PTSD).</p>
+                
+                <p>Researchers at the University of Purdue found that trauma survivors often show elevated baseline cortisol levels and a diminished ability to return to homeostasis after stress exposure. This biochemical imbalance creates a cascade of effects that impact sleep, mood, concentration, and overall quality of life.</p>
+                
+                <h2>How Service Dogs Impact Stress Physiology</h2>
+                
+                <p>A groundbreaking 2023 study published in the Journal of Psychiatric Research demonstrated that interactions with trained service dogs can significantly alter this stress biochemistry. Participants with PTSD who worked with service dogs for 6 months showed:</p>
+                
+                <ul>
+                    <li>A 23% average reduction in cortisol levels</li>
+                    <li>Increased production of oxytocin (often called the "bonding hormone")</li>
+                    <li>Reduced blood pressure and heart rate during typically triggering situations</li>
+                    <li>More normalized sleep patterns with fewer nightmares</li>
+                </ul>
+                
+                <p>Most significantly, these physiological improvements appeared to be cumulative over time, suggesting that the service dog partnership creates lasting neurobiological changes that support recovery.</p>
+                
+                <h2>Beyond Deep Pressure Therapy</h2>
+                
+                <p>While many people are familiar with deep pressure therapy (DPT) – where a service dog uses their body weight to provide calming pressure during anxiety – the biological benefits extend far beyond this specific task. Research shows that even routine interactions like petting, grooming, and training exercises with service dogs trigger the release of oxytocin while reducing cortisol.</p>
+                
+                <p>Dr. Melissa Hansen, neurobiologist at Stanford University, explains: "The consistent presence of a service dog creates a feedback loop where positive interactions stimulate oxytocin release, which in turn enhances bonding, reduces anxiety, and promotes a sense of safety that can interrupt the traumatic stress cycle."</p>
+                
+                <h2>Neuroplasticity and Recovery</h2>
+                
+                <p>Perhaps most promising is emerging evidence that service dog partnerships may actually help rewire neural pathways damaged by trauma. A 2024 fMRI study showed that trauma survivors partnered with service dogs for at least one year demonstrated increased activity in the prefrontal cortex (involved in emotional regulation) and decreased activation in the amygdala (the brain's fear center) when exposed to potential triggers.</p>
+                
+                <p>This neuroplasticity suggests that service dogs don't just help survivors cope with symptoms – they may actually facilitate healing at the neurological level by creating conditions where the brain can form healthier stress response patterns.</p>
+                
+                <h2>Areas for Future Research</h2>
+                
+                <p>While the evidence supporting service dogs for trauma recovery is compelling, researchers emphasize that more studies are needed. Current limitations include relatively small sample sizes and the challenge of controlling for all variables in human-animal bond research.</p>
+                
+                <p>At Valiant Heart Companions, we're collaborating with researchers at several universities to contribute to this growing body of knowledge. Our goal is to better understand the mechanisms behind these benefits so we can continuously refine our training methods and match protocols.</p>
+                
+                <p>As research progresses, we remain committed to both the science and the lived experiences of survivors. Their stories of transformation continue to inspire our work while the emerging scientific evidence validates what many in our community already know firsthand – the healing power of a well-trained service dog extends far beyond companionship.</p>
+                
+                <div class="blog-post-tags">
+                    <span class="blog-post-tag">Research</span>
+                    <span class="blog-post-tag">PTSD</span>
+                    <span class="blog-post-tag">Mental Health</span>
+                    <span class="blog-post-tag">Service Dogs</span>
+                    <span class="blog-post-tag">Trauma Recovery</span>
                 </div>
                 
-                <div class="blog-sidebar">
-                    <h3>Recent Posts</h3>
-                    <div class="recent-posts">
-                        <div class="recent-post">
-                            <div class="recent-post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1554456854-55a089fd4cb2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80');"></div>
-                            <div class="recent-post-info">
-                                <a href="blog-post-hypervigilance.html" class="recent-post-title">Understanding Hypervigilance and How Service Dogs Help</a>
-                                <div class="recent-post-date">March 1, 2025</div>
-                            </div>
+                <div class="blog-post-share">
+                    <span class="blog-post-share-text">Share:</span>
+                    <a href="#" class="blog-post-share-button">f</a>
+                    <a href="#" class="blog-post-share-button">t</a>
+                    <a href="#" class="blog-post-share-button">in</a>
+                    <a href="#" class="blog-post-share-button">✉️</a>
+                </div>
+            </div>
+            
+            <div class="blog-post-related">
+                <h3>Related Articles</h3>
+                <div class="blog-post-related-list">
+                    <div class="blog-post-related-item">
+                        <div class="blog-post-related-image" style="background-image: url('https://images.unsplash.com/photo-1554456854-55a089fd4cb2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');"></div>
+                        <div class="blog-post-related-content">
+                            <div class="blog-post-related-title">Understanding Hypervigilance and How Service Dogs Help</div>
+                            <div class="blog-post-related-date">March 1, 2025</div>
                         </div>
-                        <div class="recent-post">
-                            <div class="recent-post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1531844251246-9a1bfaae09fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80');"></div>
-                            <div class="recent-post-info">
-                                <a href="blog-post-fundraiser.html" class="recent-post-title">Upcoming Spring Fundraiser: Save the Date!</a>
-                                <div class="recent-post-date">February 28, 2025</div>
-                            </div>
+                    </div>
+                    <div class="blog-post-related-item">
+                        <div class="blog-post-related-image" style="background-image: url('https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');"></div>
+                        <div class="blog-post-related-content">
+                            <div class="blog-post-related-title">Trauma-Informed Care: Working with Therapists</div>
+                            <div class="blog-post-related-date">February 15, 2025</div>
                         </div>
-                        <div class="recent-post">
-                            <div class="recent-post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80');"></div>
-                            <div class="recent-post-info">
-                                <a href="blog-post-therapy.html" class="recent-post-title">Trauma-Informed Care: Working with Therapists</a>
-                                <div class="recent-post-date">February 15, 2025</div>
-                            </div>
+                    </div>
+                    <div class="blog-post-related-item">
+                        <div class="blog-post-related-image" style="background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');"></div>
+                        <div class="blog-post-related-content">
+                            <div class="blog-post-related-title">From Puppy to Partner: Our Training Methodology</div>
+                            <div class="blog-post-related-date">January 15, 2025</div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="blog-sidebar">
-                    <h3>Categories</h3>
-                    <ul style="list-style-type: none; padding-left: 0;">
-                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Training Tips (12)</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Trauma Recovery (8)</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Success Stories (10)</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">News & Events (6)</a></li>
-                        <li><a href="#" style="color: var(--primary); text-decoration: none;">Research Updates (4)</a></li>
-                    </ul>
-                </div>
-                
-                <div class="blog-sidebar">
-                    <h3>Resources</h3>
-                    <ul style="list-style-type: none; padding-left: 0;">
-                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Service Dog FAQ</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Application Process</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Training Resources for Handlers</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Educational Materials for Businesses</a></li>
-                        <li><a href="#" style="color: var(--primary); text-decoration: none;">Trauma Recovery Resources</a></li>
-                    </ul>
-                </div>
-                
-                <div class="blog-sidebar">
-                    <h3>Tags</h3>
-                    <div class="tag-cloud">
-                        <a href="#" class="tag-cloud-tag">Service Dogs</a>
-                        <a href="#" class="tag-cloud-tag">PTSD</a>
-                        <a href="#" class="tag-cloud-tag">Training</a>
-                        <a href="#" class="tag-cloud-tag">Anxiety</a>
-                        <a href="#" class="tag-cloud-tag">ADA</a>
-                        <a href="#" class="tag-cloud-tag">Recovery</a>
-                        <a href="#" class="tag-cloud-tag">Therapy</a>
-                        <a href="#" class="tag-cloud-tag">Support</a>
-                        <a href="#" class="tag-cloud-tag">Mental Health</a>
-                        <a href="#" class="tag-cloud-tag">Research</a>
+            </div>
+        </div>
+        
+        <!-- Single blog post view - ADA article -->
+        <div id="blog-post-ada" class="single-blog-post">
+            <a href="#" class="blog-back-button">Back to Blog</a>
+            
+            <div class="blog-post-header" style="background-image: url('https://images.unsplash.com/photo-1541599468348-e96984315921?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');">
+                <div class="blog-post-header-content">
+                    <h1>Understanding the ADA: Service Dog Rights & Responsibilities</h1>
+                    <div class="blog-post-meta">
+                        <span class="blog-post-meta-item blog-post-meta-date">February 20, 2025</span>
+                        <span class="blog-post-meta-item blog-post-meta-author">Leslie Jordan, Advocacy Coordinator</span>
+                        <span class="blog-post-meta-item blog-post-meta-category">Resources</span>
                     </div>
                 </div>
+            </div>
+            
+            <div class="blog-post-body">
+                <p>Navigating public spaces with a service dog means understanding both your rights and responsibilities under the Americans with Disabilities Act (ADA). This comprehensive guide breaks down where service dogs are allowed, what businesses can and cannot ask, and how to handle access challenges appropriately.</p>
                 
-                <div class="blog-sidebar">
-                    <h3>Archives</h3>
-                    <ul class="archives-list">
-                        <li class="archives-list-item">
-                            <a href="#" class="archives-list-link">March 2025</a>
-                            <span class="archives-list-count">4</span>
-                        </li>
-                        <li class="archives-list-item">
-                            <a href="#" class="archives-list-link">February 2025</a>
-                            <span class="archives-list-count">6</span>
-                        </li>
-                        <li class="archives-list-item">
-                            <a href="#" class="archives-list-link">January 2025</a>
-                            <span class="archives-list-count">5</span>
-                        </li>
-                        <li class="archives-list-item">
-                            <a href="#" class="archives-list-link">December 2024</a>
-                            <span class="archives-list-count">3</span>
-                        </li>
-                        <li class="archives-list-item">
-                            <a href="#" class="archives-list-link">November 2024</a>
-                            <span class="archives-list-count">4</span>
-                        </li>
-                    </ul>
+                <h2>What the ADA Says About Service Dogs</h2>
+                
+                <p>The Americans with Disabilities Act (ADA) defines service animals as "dogs that are individually trained to do work or perform tasks for people with disabilities." This federal law provides important protections for service dog handlers, ensuring they can access public spaces where dogs might otherwise be prohibited.</p>
+                
+                <p>Under the ADA, service dogs assisting people with PTSD and other psychiatric disabilities are granted the same legal access as those helping people with physical disabilities. This is particularly important for survivors of sexual assault, whose disabilities may not be immediately visible but are no less legitimate.</p>
+                
+                <h2>Where Service Dogs Are Allowed</h2>
+                
+                <p>Service dogs are permitted in virtually all areas open to the public, including:</p>
+                
+                <ul>
+                    <li>Restaurants and cafes (including food preparation areas where customers don't typically go)</li>
+                    <li>Retail stores and shopping malls</li>
+                    <li>Movie theaters, concert venues, and sports arenas</li>
+                    <li>Hotels and other lodging establishments</li>
+                    <li>Hospitals and medical facilities</li>
+                    <li>Public transportation (buses, trains, taxis, rideshares, and airplanes)</li>
+                    <li>Government buildings and facilities</li>
+                    <li>Schools, colleges, and universities</li>
+                    <li>Parks, beaches, and recreational areas</li>
+                </ul>
+                
+                <p>The only places where service dogs can be legally excluded are very limited. These might include sterile environments like operating rooms or specific areas in zoos where the service dog's presence might disturb other animals.</p>
+                
+                <h2>Questions Businesses Can Legally Ask</h2>
+                
+                <p>When entering a business or public establishment with your service dog, staff are legally permitted to ask only two questions:</p>
+                
+                <ol>
+                    <li>"Is this a service dog required because of a disability?"</li>
+                    <li>"What work or tasks has the dog been trained to perform?"</li>
+                </ol>
+                
+                <p>It's important to understand that staff cannot:</p>
+                
+                <ul>
+                    <li>Ask about your specific disability</li>
+                    <li>Request medical documentation</li>
+                    <li>Require a special identification card or training documentation for the dog</li>
+                    <li>Ask that the dog demonstrate its tasks</li>
+                    <li>Charge an extra fee because of your service dog</li>
+                </ul>
+                
+                <h2>Your Responsibilities as a Handler</h2>
+                
+                <p>With rights come responsibilities. Service dog handlers must ensure that:</p>
+                
+                <ul>
+                    <li>Your service dog is under your control at all times (typically on a leash, harness, or tether unless your disability prevents this or it would interfere with the dog's work)</li>
+                    <li>Your dog is housebroken</li>
+                    <li>Your dog behaves appropriately in public (not barking unnecessarily, jumping on people, or exhibiting aggressive behavior)</li>
+                </ul>
+                
+                <p>If a service dog is out of control and the handler doesn't take effective action to control it, or if the dog is not housebroken, a business is legally allowed to ask that the dog be removed—though they should still offer the handler the opportunity to return without the dog.</p>
+                
+                <h2>Handling Access Challenges</h2>
+                
+                <p>Despite clear legal protections, service dog handlers sometimes face access challenges. If you encounter resistance:</p>
+                
+                <ol>
+                    <li><strong>Stay calm and polite.</strong> Explaining the law calmly is often more effective than becoming confrontational.</li>
+                    <li><strong>Refer to specific ADA provisions.</strong> Carrying a printed ADA service dog fact sheet can be helpful (the Department of Justice provides these).</li>
+                    <li><strong>Ask to speak with a manager</strong> if a front-line employee is unfamiliar with service dog laws.</li>
+                    <li><strong>Document the incident</strong> if possible, noting names, dates, times, and specifically what was said.</li>
+                    <li><strong>Consider filing a complaint</strong> with the Department of Justice if your access rights are violated and the situation isn't resolved.</li>
+                </ol>
+                
+                <p>At Valiant Heart Companions, we provide all recipients with customized access cards that summarize ADA provisions and include our contact information. While these cards are not legally required, many handlers find them helpful for educational purposes.</p>
+                
+                <h2>Service Dogs vs. Emotional Support Animals</h2>
+                
+                <p>It's important to understand the distinction between service dogs and emotional support animals (ESAs). While service dogs are trained to perform specific tasks to mitigate disabilities, ESAs provide comfort simply through their presence. The ADA does not grant public access rights to emotional support animals.</p>
+                
+                <p>For survivors of sexual assault, this distinction is crucial. A dog that is trained to create a physical buffer in crowded spaces, alert to someone approaching from behind, provide deep pressure therapy during anxiety attacks, or wake you during nightmares qualifies as a service dog. A pet that provides general emotional support without specific trained tasks would be considered an ESA.</p>
+                
+                <h2>Housing and Air Travel: Different Rules Apply</h2>
+                
+                <p>While the ADA governs public accommodations, slightly different regulations apply to housing (Fair Housing Act) and air travel (Air Carrier Access Act). Recent changes to the ACAA have aligned it more closely with ADA definitions, meaning that only trained service dogs (not ESAs) are permitted in aircraft cabins.</p>
+                
+                <p>For housing, both service dogs and emotional support animals may qualify for reasonable accommodations, even in "no pets" housing. Documentation requirements are different than for public access under the ADA.</p>
+                
+                <h2>Fraudulent Service Dogs: A Community Challenge</h2>
+                
+                <p>Unfortunately, misrepresentation of pets as service dogs has become a significant problem, creating obstacles for legitimate service dog handlers. This is why we encourage our community to:</p>
+                
+                <ul>
+                    <li>Maintain impeccable training standards and public behavior</li>
+                    <li>Never misrepresent a service dog's status</li>
+                    <li>Help educate others about legitimate service dogs</li>
+                    <li>Support efforts to address fraudulent service animal claims in ways that don't create barriers for people with disabilities</li>
+                </ul>
+                
+                <p>By understanding both your rights and responsibilities under the ADA, you can navigate public spaces confidently with your service dog, advocating effectively when needed while also being a positive ambassador for the wider service dog community.</p>
+                
+                <div class="blog-post-tags">
+                    <span class="blog-post-tag">ADA</span>
+                    <span class="blog-post-tag">Rights</span>
+                    <span class="blog-post-tag">Legal</span>
+                    <span class="blog-post-tag">Public Access</span>
+                    <span class="blog-post-tag">Resources</span>
+                </div>
+                
+                <div class="blog-post-share">
+                    <span class="blog-post-share-text">Share:</span>
+                    <a href="#" class="blog-post-share-button">f</a>
+                    <a href="#" class="blog-post-share-button">t</a>
+                    <a href="#" class="blog-post-share-button">in</a>
+                    <a href="#" class="blog-post-share-button">✉️</a>
+                </div>
+            </div>
+            
+            <div class="blog-post-related">
+                <h3>Related Articles</h3>
+                <div class="blog-post-related-list">
+                    <div class="blog-post-related-item">
+                        <div class="blog-post-related-image" style="background-image: url('https://images.unsplash.com/photo-1531844251246-9a1bfaae09fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');"></div>
+                        <div class="blog-post-related-content">
+                            <div class="blog-post-related-title">Upcoming Spring Fundraiser: Save the Date!</div>
+                            <div class="blog-post-related-date">February 28, 2025</div>
+                        </div>
+                    </div>
+                    <div class="blog-post-related-item">
+                        <div class="blog-post-related-image" style="background-image: url('https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');"></div>
+                        <div class="blog-post-related-content">
+                            <div class="blog-post-related-title">Preparing for College with Your Service Dog</div>
+                            <div class="blog-post-related-date">January 30, 2025</div>
+                        </div>
+                    </div>
+                    <div class="blog-post-related-item">
+                        <div class="blog-post-related-image" style="background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');"></div>
+                        <div class="blog-post-related-content">
+                            <div class="blog-post-related-title">Travel Tips for Service Dog Handlers</div>
+                            <div class="blog-post-related-date">December 12, 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Single blog post view - Training article -->
+        <div id="blog-post-training" class="single-blog-post">
+            <a href="#" class="blog-back-button">Back to Blog</a>
+            
+            <div class="blog-post-header" style="background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');">
+                <div class="blog-post-header-content">
+                    <h1>From Puppy to Partner: Our Training Methodology</h1>
+                    <div class="blog-post-meta">
+                        <span class="blog-post-meta-item blog-post-meta-date">January 15, 2025</span>
+                        <span class="blog-post-meta-item blog-post-meta-author">Marcus Chen, Head Trainer</span>
+                        <span class="blog-post-meta-item blog-post-meta-category">Training Tips</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-post-body">
+                <p>What does it take to transform a puppy into a specialized service dog for trauma survivors? Our head trainer explains our 18-month progressive training program, from puppy selection to final placement. Learn about how we select puppies with the right temperament, the critical socialization period, and the specialized task training that prepares them for their important work.</p>
+                
+                <h2>The Foundation: Selecting the Right Puppies</h2>
+                
+                <p>Not every dog has the temperament to become a service dog, especially one working with trauma survivors. At Valiant Heart Companions, our selection process begins before puppies are even born, with careful breeding partner selection focusing on dogs with proven histories of calm temperament, trainability, physical health, and longevity.</p>
+                
+                <p>When evaluating puppies at 7-8 weeks, we conduct standardized temperament tests looking for:</p>
+                
+                <ul>
+                    <li>Confident but not bold temperament</li>
+                    <li>Moderate energy level</li>
+                    <li>High food and play motivation</li>
+                    <li>Responsiveness to humans</li>
+                    <li>Recovery from startle</li>
+                    <li>Minimal environmental sensitivity</li>
+                    <li>Low prey drive</li>
+                </ul>
+                
+                <p>Only about 30% of puppies tested demonstrate the ideal combination of traits for our program. While we primarily work with Labrador Retrievers, Golden Retrievers, and Standard Poodles, we occasionally accept puppies from other breeds that consistently demonstrate the right characteristics.</p>
+                
+                <h2>Puppy Development: 8 Weeks to 6 Months</h2>
+                
+                <p>The most critical socialization period for dogs occurs between 8-16 weeks. During this time, puppies in our program live with volunteer puppy raisers who follow our structured socialization protocol, exposing the puppies to:</p>
+                
+                <ul>
+                    <li>Different surfaces, sounds, and environments</li>
+                    <li>Various people of different ages, appearances, and mobility aids</li>
+                    <li>Other animals and pets</li>
+                    <li>Basic household activities and routines</li>
+                </ul>
+                
+                <p>Simultaneously, puppies begin foundational training including:</p>
+                
+                <ul>
+                    <li>House training</li>
+                    <li>Basic obedience (sit, down, stay, come)</li>
+                    <li>Walking calmly on leash</li>
+                    <li>Settling calmly in various environments</li>
+                    <li>Positive exposure to handling and grooming</li>
+                </ul>
+                
+                <p>Our trainers check in weekly with puppy raisers, and dogs attend formal training sessions at our facility twice a month to monitor progress and provide professional guidance.</p>
+                
+                <h2>Advanced Training: 6 to 12 Months</h2>
+                
+                <p>As dogs mature, they progress to more challenging training. During this period, we focus on:</p>
+                
+                <ul>
+                    <li>Proofing basic obedience in distracting environments</li>
+                    <li>Public access training in gradually more challenging settings</li>
+                    <li>Teaching complex chains of behaviors</li>
+                    <li>Developing duration and distance in commands</li>
+                    <li>Beginning specific task training relevant to trauma survivors</li>
+                </ul>
+                
+                <p>At around 9 months, we conduct a formal evaluation to assess each dog's progress and suitability to continue in the program. Approximately 70% of dogs that entered puppy training move forward to advanced training.</p>
+                
+                <h2>Specialized Task Training: 12 to 18 Months</h2>
+                
+                <p>The final phase of training focuses on the specialized tasks that make our service dogs uniquely valuable to trauma survivors. These tasks may include:</p>
+                
+                <ul>
+                    <li><strong>Creating a physical buffer</strong> in crowded environments to prevent triggering inadvertent touch</li>
+                    <li><strong>Back coverage and alerting</strong> when someone approaches from behind</li>
+                    <li><strong>Room sweeps</strong> to check enclosed spaces before the handler enters</li>
+                    <li><strong>Deep pressure therapy</strong> during anxiety or panic attacks</li>
+                    <li><strong>Nightmare interruption</strong> by recognizing signs of distress during sleep</li>
+                    <li><strong>Grounding during flashbacks</strong> through trained nudging or paw placement</li>
+                    <li><strong>Medication reminders</strong> at set times</li>
+                    <li><strong>Leading to exits</strong> during periods of disorientation</li>
+                </ul>
+                
+                <p>Each dog typically learns 3-5 specialized tasks, depending on their aptitude and the anticipated needs of their future handler. While most tasks are trained through positive reinforcement methods, we keep in mind that these dogs need to be able to "disobey" commands if they perceive danger—an especially important trait for dogs working with trauma survivors.</p>
+                
+                <h2>The Matching Process</h2>
+                
+                <p>Finding the right match between dog and handler is critical to success. Rather than following a rigid first-come, first-served model, we use a holistic approach considering:</p>
+                
+                <ul>
+                    <li>The specific trauma-related symptoms experienced by the recipient</li>
+                    <li>The individual's lifestyle, living situation, and daily routines</li>
+                    <li>The service dog's temperament, strengths, and trained tasks</li>
+                    <li>The natural chemistry between the team</li>
+                </ul>
+                
+                <p>Potential matches participate in a two-week team training program where they learn to work together under professional guidance before the final placement decision.</p>
+                
+                <h2>Ongoing Support and Follow-up</h2>
+                
+                <p>Our commitment doesn't end with placement. Each service dog team receives:</p>
+                
+                <ul>
+                    <li>Six months of weekly check-ins with a trainer</li>
+                    <li>Quarterly in-person follow-up sessions for the first year</li>
+                    <li>Annual recertification evaluations</li>
+                    <li>Access to our 24/7 handler support line</li>
+                    <li>Continuing education opportunities</li>
+                </ul>
+                
+                <p>This ongoing support helps ensure teams maintain their skills and can adapt to changing circumstances over the working life of the service dog.</p>
+                
+                <h2>Why Our Approach Works</h2>
+                
+                <p>Our trauma-informed training model acknowledges that both dogs and handlers may have heightened sensitivity to certain stimuli. We train dogs to recognize and respond appropriately to anxiety, to maintain calm in challenging situations, and to exhibit the perfect balance of initiative and responsiveness.</p>
+                
+                <p>For trauma survivors, having a service dog that not only performs practical tasks but also understands the nuanced aspects of trauma responses can be life-changing. As one recipient described it: "My service dog seems to sense when I'm starting to go into a trauma response even before I do. Having that early warning system has changed everything about how I navigate the world."</p>
+                
+                <p>Through our carefully developed training methodology, we transform promising puppies into exceptional service dogs, ready to help sexual assault survivors reclaim their independence and confidence.</p>
+                
+                <div class="blog-post-tags">
+                    <span class="blog-post-tag">Training</span>
+                    <span class="blog-post-tag">Methodology</span>
+                    <span class="blog-post-tag">Service Dogs</span>
+                    <span class="blog-post-tag">Puppy Development</span>
+                    <span class="blog-post-tag">Task Training</span>
+                </div>
+                
+                <div class="blog-post-share">
+                    <span class="blog-post-share-text">Share:</span>
+                    <a href="#" class="blog-post-share-button">f</a>
+                    <a href="#" class="blog-post-share-button">t</a>
+                    <a href="#" class="blog-post-share-button">in</a>
+                    <a href="#" class="blog-post-share-button">✉️</a>
+                </div>
+            </div>
+            
+            <div class="blog-post-related">
+                <h3>Related Articles</h3>
+                <div class="blog-post-related-list">
+                    <div class="blog-post-related-item">
+                        <div class="blog-post-related-image" style="background-image: url('https://images.unsplash.com/photo-1529429617124-95b109e86bb8?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');"></div>
+                        <div class="blog-post-related-content">
+                            <div class="blog-post-related-title">The First 30 Days With Your Service Dog</div>
+                            <div class="blog-post-related-date">December 5, 2024</div>
+                        </div>
+                    </div>
+                    <div class="blog-post-related-item">
+                        <div class="blog-post-related-image" style="background-image: url('https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');"></div>
+                        <div class="blog-post-related-content">
+                            <div class="blog-post-related-title">Training Spotlight: Deep Pressure Therapy</div>
+                            <div class="blog-post-related-date">November 18, 2024</div>
+                        </div>
+                    </div>
+                    <div class="blog-post-related-item">
+                        <div class="blog-post-related-image" style="background-image: url('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');"></div>
+                        <div class="blog-post-related-content">
+                            <div class="blog-post-related-title">The Science Behind Service Dogs for PTSD</div>
+                            <div class="blog-post-related-date">March 5, 2025</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1269,6 +1737,84 @@
             });
         });
         
+        // Show single blog post when clicking "Read More"
+        document.querySelectorAll('.read-more-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const postId = this.getAttribute('data-post');
+                showBlogPost(postId);
+            });
+        });
+        
+        // Show single blog post when clicking on recent post links
+        document.querySelectorAll('.recent-post-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const postId = this.getAttribute('data-post');
+                showBlogPost(postId);
+            });
+        });
+        
+        // Back to blog listings when clicking back button
+        document.querySelectorAll('.blog-back-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                showBlogListings();
+            });
+        });
+        
+        // Function to show single blog post
+        function showBlogPost(postId) {
+            // Hide blog listings
+            document.getElementById('blog-listings').style.display = 'none';
+            
+            // Hide all single blog posts
+            document.querySelectorAll('.single-blog-post').forEach(post => {
+                post.style.display = 'none';
+            });
+            
+            // Show the selected blog post
+            document.getElementById('blog-post-' + postId).style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Update page title
+            let title = '';
+            if (postId === 'science') {
+                title = 'The Science Behind Service Dogs for PTSD';
+            } else if (postId === 'ada') {
+                title = 'Understanding the ADA: Service Dog Rights & Responsibilities';
+            } else if (postId === 'training') {
+                title = 'From Puppy to Partner: Our Training Methodology';
+            } else {
+                title = 'Blog Post';
+            }
+            document.title = title + ' - Valiant Heart Companions';
+        }
+        
+        // Function to show blog listings
+        function showBlogListings() {
+            // Hide all single blog posts
+            document.querySelectorAll('.single-blog-post').forEach(post => {
+                post.style.display = 'none';
+            });
+            
+            // Show blog listings
+            document.getElementById('blog-listings').style.display = 'block';
+            
+            // Update page title
+            document.title = 'Blog - Valiant Heart Companions';
+        }
+        
+        // Add click handlers to related articles
+        document.querySelectorAll('.blog-post-related-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // In a full implementation, this would navigate to the related post
+                // For now, just return to the blog listings
+                showBlogListings();
+            });
+        });
+        
         // Back to top button
         const backToTopButton = document.getElementById('back-to-top');
         
@@ -1283,6 +1829,17 @@
         backToTopButton.addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Check for URL hash to show specific blog post
+        window.addEventListener('load', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const postId = hash.replace('#post-', '');
+                if (document.getElementById('blog-post-' + postId)) {
+                    showBlogPost(postId);
+                }
+            }
         });
     </script>
 </body>
