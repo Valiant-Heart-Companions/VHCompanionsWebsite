@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; frame-src https://forms.office.com https://secure.qgiv.com; img-src 'self' data: https://images.unsplash.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://secure.qgiv.com; style-src 'self' 'unsafe-inline'; frame-src https://forms.office.com https://secure.qgiv.com; img-src 'self' data: https://images.unsplash.com; connect-src https://secure.qgiv.com;">
     <title>Donate - Valiant Heart Companions</title>
     <style>
         :root {
@@ -193,17 +193,20 @@
         .donation-frame-container {
             width: 100%;
             max-width: 900px;
-            height: 800px;
+            min-height: 600px;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             background-color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
         }
         
-        .donation-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .qgiv-embed-container {
+            width: 100% !important;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .info-section {
@@ -436,10 +439,6 @@
                 text-align: center;
                 margin-bottom: 2rem;
             }
-            
-            .donation-frame-container {
-                height: 1000px;
-            }
         }
     </style>
 </head>
@@ -510,7 +509,7 @@
         </div>
         
         <div class="donation-frame-container">
-            <iframe class="donation-frame" src="https://secure.qgiv.com/for/valiant-heart" title="Donation Form"></iframe>
+            <div class="qgiv-embed-container" data-qgiv-embed="true" data-embed-id="51178" data-embed="https://secure.qgiv.com/for/vhc/embed/51178/" data-width="564"></div>
         </div>
         
         <div class="info-section">
@@ -591,5 +590,7 @@
             });
         });
     </script>
+    
+    <script>(function(w, d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "https://secure.qgiv.com/resources/core/js/embed.js";fjs.parentNode.insertBefore(js, fjs);})(window, document, 'script', 'qgiv-embedjs');</script>
 </body>
 </html>
