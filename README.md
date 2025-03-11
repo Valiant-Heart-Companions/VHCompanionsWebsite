@@ -89,8 +89,7 @@ Contact Information
 
 For questions or support regarding this website, please contact:
 
-    Email: info@valiantheartcompanions.org
-    Phone: (555) 123-4567
+    Email: info@vhcompanions.org
 
 License
 
