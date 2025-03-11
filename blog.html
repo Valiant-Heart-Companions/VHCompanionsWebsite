@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; frame-src https://forms.office.com https://secure.qgiv.com; img-src 'self' data: https://images.unsplash.com;">
+    <title>Blog - Valiant Heart Companions</title>
+    <style>
+        :root {
+            --primary: #4a6da7;
+            --primary-dark: #3a5888;
+            --primary-light: #e8edf5;
+            --secondary: #a83c54;
+            --secondary-dark: #8a3046;
+            --secondary-light: #f5e1e5;
+            --accent: #f3b941;
+            --accent-light: #f9eacf;
+            --light: #f8f9fa;
+            --dark: #333333;
+            --text: #4a4a4a;
+            --gray-light: #f0f0f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .top-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        .logo {
+            width: 180px;
+            height: 60px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .site-title {
+            font-size: 1.8rem;
+            margin: 0;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .site-tagline {
+            font-size: 1rem;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: var(--primary-dark);
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        
+        section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 50vh;
+            scroll-margin-top: 3rem;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn-accent:hover {
+            background-color: #e6aa30;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 2rem 0;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo img {
+            max-width: 180px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+        }
+        
+        .footer-links h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .footer-contact {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+        }
+        
+        .footer-contact h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Blog styles */
+        .blog-posts {
+            margin: 2rem 0;
+        }
+        
+        .blog-post {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .blog-post-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .blog-post-image::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+        
+        .blog-post-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-post-date {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-post-date::before {
+            content: "📅";
+            margin-right: 0.5rem;
+        }
+        
+        .blog-post-excerpt {
+            margin-bottom: 1rem;
+        }
+        
+        .blog-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .blog-category {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-light);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .blog-category:hover {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+        
+        .blog-category.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .blog-sidebar {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .blog-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .blog-main {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .blog-aside {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .recent-post {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            transition: transform 0.2s ease;
+        }
+        
+        .recent-post:hover {
+            transform: translateX(5px);
+        }
+        
+        .recent-post:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .recent-post-thumbnail {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-light);
+            border-radius: 4px;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .recent-post-info {
+            flex-grow: 1;
+        }
+        
+        .recent-post-title {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+        
+        .recent-post-date {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* Single blog post page */
+        .blog-post-header {
+            position: relative;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        .blog-post-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+        
+        .blog-post-header-content {
+            position: relative;
+            color: white;
+            padding: 2rem;
+            z-index: 2;
+            width: 100%;
+        }
+        
+        .blog-post-header h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+        
+        .blog-post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .blog-post-meta-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .blog-post-meta-item::before {
+            margin-right: 0.5rem;
+        }
+        
+        .blog-post-meta-date::before {
+            content: "📅";
+        }
+        
+        .blog-post-meta-author::before {
+            content: "👤";
+        }
+        
+        .blog-post-meta-category::before {
+            content: "🏷️";
+        }
+        
+        .blog-post-body {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .blog-post-body p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .blog-post-body h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-post-body h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .blog-post-body ul, .blog-post-body ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .blog-post-body li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-post-body blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .blog-post-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-post-body figure {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .blog-post-body figcaption {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .blog-post-share {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            align-items: center;
+        }
+        
+        .blog-post-share-text {
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .blog-post-share-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+        
+        .blog-post-share-button:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .blog-post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .blog-post-tag {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .blog-post-tag:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .blog-post-related {
+            margin-top: 3rem;
+        }
+        
+        .blog-post-related h3 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-post-related-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .blog-post-related-item {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-post-related-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .blog-post-related-image {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .blog-post-related-content {
+            padding: 1rem;
+        }
+        
+        .blog-post-related-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .blog-post-related-date {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .blog-post-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .blog-post-navigation-item {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 48%;
+            transition: all 0.2s ease;
+        }
+        
+        .blog-post-navigation-item:hover {
+            transform: translateY(-3px);
+            background-color: var(--primary-light);
+        }
+        
+        .blog-post-navigation-prev::before {
+            content: "←";
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .blog-post-navigation-next {
+            text-align: right;
+        }
+        
+        .blog-post-navigation-next::after {
+            content: "→";
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .blog-post-navigation-label {
+            font-size: 0.8rem;
+            color: #666;
+            display: block;
+        }
+        
+        .blog-post-navigation-title {
+            font-weight: bold;
+        }
+        
+        .blog-post-comment-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .blog-post-comment-form h3 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.2s ease;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Search Form */
+        .search-form {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .search-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .search-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Tag Cloud Widget */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag-cloud-tag {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .tag-cloud-tag:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Archives Widget */
+        .archives-list {
+            list-style: none;
+        }
+        
+        .archives-list-item {
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .archives-list-link {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .archives-list-link:hover {
+            color: var(--secondary);
+        }
+        
+        .archives-list-count {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 20px;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Pagination styles */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .current-page {
+            color: var(--text);
+            font-weight: bold;
+        }
+        
+        /* Hamburger Icon */
+        .hamburger {
+            width: 30px;
+            height: 24px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .hamburger-line {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .hamburger-line:nth-child(1) {
+            top: 0;
+        }
+        
+        .hamburger-line:nth-child(2) {
+            top: 10px;
+        }
+        
+        .hamburger-line:nth-child(3) {
+            top: 20px;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg);
+            top: 10px;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .top-header {
+                flex-direction: column;
+            }
+            
+            .logo-container {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+            
+            nav a {
+                width: 100%;
+                padding: 0.8rem 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-logo, .footer-links, .footer-contact {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .blog-layout {
+                flex-direction: column;
+            }
+            
+            .blog-post-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .blog-post-navigation-item {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo-container">
+                <div class="logo">
+                    <svg class="logo-svg" viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 10 C 40 5, 50 5, 60 10 C 70 15, 80 15, 90 10 C 95 7, 100 5, 105 5 C 115 5, 125 10, 135 15 C 140 17, 145 18, 150 18 C 155 18, 160 17, 165 15" stroke="white" stroke-width="2" fill="none" />
+                        <circle cx="30" cy="30" r="20" fill="#a83c54" />
+                        <path d="M20 25 C 25 15, 35 15, 40 25 C 43 30, 43 35, 40 40 C 35 45, 25 45, 20 40 C 17 35, 17 30, 20 25 Z" fill="white" />
+                        <path d="M22 28 C 24 26, 26 26, 28 28 C 30 30, 30 32, 28 34 C 26 36, 24 36, 22 34 C 20 32, 20 30, 22 28 Z" fill="#333" />
+                        <path d="M32 28 C 34 26, 36 26, 38 28 C 40 30, 40 32, 38 34 C 36 36, 34 36, 32 34 C 30 32, 30 30, 32 28 Z" fill="#333" />
+                        <path d="M25 38 C 26 40, 28 42, 30 42 C 32 42, 34 40, 35 38" stroke="black" stroke-width="1.5" fill="none" />
+                        <polygon points="100,15 110,40 120,15" fill="#4a6da7" />
+                        <polygon points="115,15 125,40 135,15" fill="#4a6da7" />
+                        <rect x="140" y="15" width="25" height="25" rx="5" fill="#4a6da7" />
+                        <rect x="70" y="15" width="25" height="25" rx="12.5" fill="#4a6da7" />
+                        <text x="76" y="53" font-family="Arial" font-size="10" font-weight="bold" fill="white">VALIANT HEART</text>
+                    </svg>
+                </div>
+            </div>
+            <div>
+                <h1 class="site-title">Valiant Heart Companions</h1>
+                <p class="site-tagline">Training service dogs for survivors of sexual assault</p>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <div class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+            </button>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#stories">Survivor Stories</a></li>
+                <li><a href="index.html#dogs">Our Dogs</a></li>
+                <li><a href="index.html#impact">Our Impact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#donate">Donate</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="blog">
+        <h2>Blog & Resources</h2>
+        <p>Stay informed about service dog training, trauma recovery, and Valiant Heart Companions updates through our blog.</p>
+        
+        <div class="blog-categories">
+            <div class="blog-category active">All Posts</div>
+            <div class="blog-category">Training Tips</div>
+            <div class="blog-category">Trauma Recovery</div>
+            <div class="blog-category">Success Stories</div>
+            <div class="blog-category">News & Events</div>
+        </div>
+        
+        <div class="blog-layout">
+            <div class="blog-main">
+                <div class="blog-posts">
+                    <div class="blog-post">
+                        <div class="blog-post-image" style="background-image: url('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="blog-post-content">
+                            <h3>The Science Behind Service Dogs for PTSD</h3>
+                            <div class="blog-post-date">March 5, 2025</div>
+                            <div class="blog-post-excerpt">
+                                <p>Recent research is shedding light on why service dogs are so effective for trauma survivors. Beyond the emotional support they provide, these dogs offer physiological benefits that can help regulate stress responses in the body.</p>
+                                <p>Studies show that positive interactions with dogs can increase oxytocin levels while decreasing cortisol, creating a biological foundation for healing.</p>
+                            </div>
+                            <a href="blog-post-science.html" class="btn">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-post">
+                        <div class="blog-post-image" style="background-image: url('https://images.unsplash.com/photo-1541599468348-e96984315921?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="blog-post-content">
+                            <h3>Understanding the ADA: Service Dog Rights & Responsibilities</h3>
+                            <div class="blog-post-date">February 20, 2025</div>
+                            <div class="blog-post-excerpt">
+                                <p>Navigating public spaces with a service dog means understanding both your rights and responsibilities under the Americans with Disabilities Act (ADA).</p>
+                                <p>This comprehensive guide breaks down where service dogs are allowed, what businesses can and cannot ask, and how to handle access challenges appropriately.</p>
+                            </div>
+                            <a href="blog-post-ada.html" class="btn">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-post">
+                        <div class="blog-post-image" style="background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="blog-post-content">
+                            <h3>From Puppy to Partner: Our Training Methodology</h3>
+                            <div class="blog-post-date">January 15, 2025</div>
+                            <div class="blog-post-excerpt">
+                                <p>What does it take to transform a puppy into a specialized service dog for trauma survivors? Our head trainer explains our 18-month progressive training program.</p>
+                                <p>Learn about how we select puppies with the right temperament, the critical socialization period, and the specialized task training that prepares them for their important work.</p>
+                            </div>
+                            <a href="blog-post-training.html" class="btn">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <span class="current-page">Page 1 of 3</span>
+                    <a href="#" class="btn btn-primary">Older Posts →</a>
+                </div>
+            </div>
+            
+            <div class="blog-aside">
+                <div class="blog-sidebar">
+                    <h3>Search</h3>
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="Search blog posts...">
+                        <button type="submit" class="search-button">🔍</button>
+                    </form>
+                </div>
+                
+                <div class="blog-sidebar">
+                    <h3>Recent Posts</h3>
+                    <div class="recent-posts">
+                        <div class="recent-post">
+                            <div class="recent-post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1554456854-55a089fd4cb2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80');"></div>
+                            <div class="recent-post-info">
+                                <a href="blog-post-hypervigilance.html" class="recent-post-title">Understanding Hypervigilance and How Service Dogs Help</a>
+                                <div class="recent-post-date">March 1, 2025</div>
+                            </div>
+                        </div>
+                        <div class="recent-post">
+                            <div class="recent-post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1531844251246-9a1bfaae09fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80');"></div>
+                            <div class="recent-post-info">
+                                <a href="blog-post-fundraiser.html" class="recent-post-title">Upcoming Spring Fundraiser: Save the Date!</a>
+                                <div class="recent-post-date">February 28, 2025</div>
+                            </div>
+                        </div>
+                        <div class="recent-post">
+                            <div class="recent-post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80');"></div>
+                            <div class="recent-post-info">
+                                <a href="blog-post-therapy.html" class="recent-post-title">Trauma-Informed Care: Working with Therapists</a>
+                                <div class="recent-post-date">February 15, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="blog-sidebar">
+                    <h3>Categories</h3>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Training Tips (12)</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Trauma Recovery (8)</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Success Stories (10)</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">News & Events (6)</a></li>
+                        <li><a href="#" style="color: var(--primary); text-decoration: none;">Research Updates (4)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="blog-sidebar">
+                    <h3>Resources</h3>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Service Dog FAQ</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Application Process</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Training Resources for Handlers</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--primary); text-decoration: none;">Educational Materials for Businesses</a></li>
+                        <li><a href="#" style="color: var(--primary); text-decoration: none;">Trauma Recovery Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div class="blog-sidebar">
+                    <h3>Tags</h3>
+                    <div class="tag-cloud">
+                        <a href="#" class="tag-cloud-tag">Service Dogs</a>
+                        <a href="#" class="tag-cloud-tag">PTSD</a>
+                        <a href="#" class="tag-cloud-tag">Training</a>
+                        <a href="#" class="tag-cloud-tag">Anxiety</a>
+                        <a href="#" class="tag-cloud-tag">ADA</a>
+                        <a href="#" class="tag-cloud-tag">Recovery</a>
+                        <a href="#" class="tag-cloud-tag">Therapy</a>
+                        <a href="#" class="tag-cloud-tag">Support</a>
+                        <a href="#" class="tag-cloud-tag">Mental Health</a>
+                        <a href="#" class="tag-cloud-tag">Research</a>
+                    </div>
+                </div>
+                
+                <div class="blog-sidebar">
+                    <h3>Archives</h3>
+                    <ul class="archives-list">
+                        <li class="archives-list-item">
+                            <a href="#" class="archives-list-link">March 2025</a>
+                            <span class="archives-list-count">4</span>
+                        </li>
+                        <li class="archives-list-item">
+                            <a href="#" class="archives-list-link">February 2025</a>
+                            <span class="archives-list-count">6</span>
+                        </li>
+                        <li class="archives-list-item">
+                            <a href="#" class="archives-list-link">January 2025</a>
+                            <span class="archives-list-count">5</span>
+                        </li>
+                        <li class="archives-list-item">
+                            <a href="#" class="archives-list-link">December 2024</a>
+                            <span class="archives-list-count">3</span>
+                        </li>
+                        <li class="archives-list-item">
+                            <a href="#" class="archives-list-link">November 2024</a>
+                            <span class="archives-list-count">4</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <svg width="180" height="60" viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 10 C 40 5, 50 5, 60 10 C 70 15, 80 15, 90 10 C 95 7, 100 5, 105 5 C 115 5, 125 10, 135 15 C 140 17, 145 18, 150 18 C 155 18, 160 17, 165 15" stroke="white" stroke-width="2" fill="none" />
+                    <circle cx="30" cy="30" r="20" fill="#a83c54" />
+                    <path d="M20 25 C 25 15, 35 15, 40 25 C 43 30, 43 35, 40 40 C 35 45, 25 45, 20 40 C 17 35, 17 30, 20 25 Z" fill="white" />
+                    <path d="M22 28 C 24 26, 26 26, 28 28 C 30 30, 30 32, 28 34 C 26 36, 24 36, 22 34 C 20 32, 20 30, 22 28 Z" fill="#333" />
+                    <path d="M32 28 C 34 26, 36 26, 38 28 C 40 30, 40 32, 38 34 C 36 36, 34 36, 32 34 C 30 32, 30 30, 32 28 Z" fill="#333" />
+                    <path d="M25 38 C 26 40, 28 42, 30 42 C 32 42, 34 40, 35 38" stroke="white" stroke-width="1.5" fill="none" />
+                    <polygon points="100,15 110,40 120,15" fill="white" />
+                    <polygon points="115,15 125,40 135,15" fill="white" />
+                    <rect x="140" y="15" width="25" height="25" rx="5" fill="white" />
+                    <rect x="70" y="15" width="25" height="25" rx="12.5" fill="white" />
+                    <text x="76" y="53" font-family="Arial" font-size="10" font-weight="bold" fill="white">VALIANT HEART</text>
+                </svg>
+                <p>Empowering survivors of sexual assault through specialized service dog training.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#dogs">Our Dogs</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#donate">Donate</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Email: info@vhcompanions.org</p>
+                <p>Phone: (555) 123-4567</p>
+                <p>123 Service Dog Lane<br>
+                Compassion City, ST 12345</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Valiant Heart Companions. All rights reserved.</p>
+            <p>A 501(c)(3) nonprofit organization dedicated to training service dogs for survivors of sexual assault.</p>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="back-to-top">↑</a>
+    
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        });
+        
+        // Blog category filter
+        document.querySelectorAll('.blog-category').forEach(category => {
+            category.addEventListener('click', function() {
+                // Remove active class from all categories
+                document.querySelectorAll('.blog-category').forEach(cat => {
+                    cat.classList.remove('active');
+                });
+                
+                // Add active class to clicked category
+                this.classList.add('active');
+                
+                // In a real implementation, this would filter the blog posts
+                console.log('Selected category:', this.textContent);
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
