@@ -7,6 +7,7 @@ Files Structure
     index.html - Homepage
     donate.html - Donation page
     privacy.html - Privacy policy page
+    blog.html - Organization's Blog
 
 
 Features
