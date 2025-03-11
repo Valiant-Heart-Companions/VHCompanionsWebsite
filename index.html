@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; frame-src https://forms.office.com https://secure.qgiv.com; img-src 'self' data: https://images.unsplash.com;">
+    <title>Valiant Heart Companions</title>
+    <style>
+        :root {
+            --primary: #4a6da7;
+            --primary-dark: #3a5888;
+            --primary-light: #e8edf5;
+            --secondary: #a83c54;
+            --secondary-dark: #8a3046;
+            --secondary-light: #f5e1e5;
+            --accent: #f3b941;
+            --accent-light: #f9eacf;
+            --light: #f8f9fa;
+            --dark: #333333;
+            --text: #4a4a4a;
+            --gray-light: #f0f0f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .top-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        .logo {
+            width: 180px;
+            height: 60px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .site-title {
+            font-size: 1.8rem;
+            margin: 0;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .site-tagline {
+            font-size: 1rem;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: var(--primary-dark);
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        
+        section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 50vh;
+            scroll-margin-top: 3rem;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn-accent:hover {
+            background-color: #e6aa30;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(rgba(232, 237, 245, 0.85), rgba(232, 237, 245, 0.85)), url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a6da7' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .mission {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+            align-items: center;
+        }
+        
+        .mission-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .mission-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-color: var(--gray-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .mission-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary);
+            opacity: 0.2;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 2rem 0;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo img {
+            max-width: 180px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+        }
+        
+        .footer-links h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .footer-contact {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+        }
+        
+        .footer-contact h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .contact-method {
+            flex: 1;
+            min-width: 250px;
+            padding: 1.5rem;
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .contact-method::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--secondary);
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .form-container {
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .form-container iframe {
+            border: none;
+            width: 100%;
+            height: 800px;
+            max-width: 100%;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .story-cards, .dog-profiles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .story-card, .dog-card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .story-card::before, .dog-card::before {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .impact-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .stat-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--primary);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .partners-section {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .partners-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .partner-logo {
+            width: 180px;
+            height: 80px;
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .testimonials {
+            margin: 3rem 0;
+        }
+        
+        .testimonial-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .testimonial {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-5px);
+        }
+        
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 4rem;
+            color: var(--primary-light);
+            z-index: 0;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .testimonial-info h4 {
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .testimonial-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .featured-blogs {
+            margin: 3rem 0;
+        }
+        
+        .featured-blogs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .featured-blog {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .featured-blog:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .featured-blog-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .featured-blog-content {
+            padding: 1.5rem;
+        }
+        
+        .featured-blog-category {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .featured-blog-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .featured-blog-excerpt {
+            margin-bottom: 1.2rem;
+            color: #666;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a6da7' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            text-align: center;
+        }
+        
+        .cta-section h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Hamburger Icon */
+        .hamburger {
+            width: 30px;
+            height: 24px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .hamburger-line {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .hamburger-line:nth-child(1) {
+            top: 0;
+        }
+        
+        .hamburger-line:nth-child(2) {
+            top: 10px;
+        }
+        
+        .hamburger-line:nth-child(3) {
+            top: 20px;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg);
+            top: 10px;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 10px;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .top-header {
+                flex-direction: column;
+            }
+            
+            .logo-container {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+            
+            nav a {
+                width: 100%;
+                padding: 0.8rem 0;
+            }
+            
+            .form-container iframe {
+                height: 1000px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-logo, .footer-links, .footer-contact {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .testimonial {
+                margin-bottom: 2rem;
+            }
+            
+            .mission {
+                flex-direction: column;
+            }
+            
+            .mission-image {
+                height: 300px;
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo-container">
+                <div class="logo">
+                    <svg class="logo-svg" viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 10 C 40 5, 50 5, 60 10 C 70 15, 80 15, 90 10 C 95 7, 100 5, 105 5 C 115 5, 125 10, 135 15 C 140 17, 145 18, 150 18 C 155 18, 160 17, 165 15" stroke="white" stroke-width="2" fill="none" />
+                        <circle cx="30" cy="30" r="20" fill="#a83c54" />
+                        <path d="M20 25 C 25 15, 35 15, 40 25 C 43 30, 43 35, 40 40 C 35 45, 25 45, 20 40 C 17 35, 17 30, 20 25 Z" fill="white" />
+                        <path d="M22 28 C 24 26, 26 26, 28 28 C 30 30, 30 32, 28 34 C 26 36, 24 36, 22 34 C 20 32, 20 30, 22 28 Z" fill="#333" />
+                        <path d="M32 28 C 34 26, 36 26, 38 28 C 40 30, 40 32, 38 34 C 36 36, 34 36, 32 34 C 30 32, 30 30, 32 28 Z" fill="#333" />
+                        <path d="M25 38 C 26 40, 28 42, 30 42 C 32 42, 34 40, 35 38" stroke="black" stroke-width="1.5" fill="none" />
+                        <polygon points="100,15 110,40 120,15" fill="#4a6da7" />
+                        <polygon points="115,15 125,40 135,15" fill="#4a6da7" />
+                        <rect x="140" y="15" width="25" height="25" rx="5" fill="#4a6da7" />
+                        <rect x="70" y="15" width="25" height="25" rx="12.5" fill="#4a6da7" />
+                        <text x="76" y="53" font-family="Arial" font-size="10" font-weight="bold" fill="white">VALIANT HEART</text>
+                    </svg>
+                </div>
+            </div>
+            <div>
+                <h1 class="site-title">Valiant Heart Companions</h1>
+                <p class="site-tagline">Training service dogs for survivors of sexual assault</p>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <div class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+            </button>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#stories">Survivor Stories</a></li>
+                <li><a href="#dogs">Our Dogs</a></li>
+                <li><a href="#impact">Our Impact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Empowering Survivors Through Canine Companionship</h1>
+            <p>Valiant Heart Companions provides specially trained service dogs to survivors of sexual assault, helping them regain independence, confidence, and peace of mind.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">Learn About Our Mission</a>
+                <a href="#apply" class="btn btn-secondary">Apply For A Service Dog</a>
+                <a href="#donate" class="btn btn-accent">Support Our Work</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <h2>Our Mission</h2>
+        <div class="mission">
+            <div class="mission-text">
+                <p>Valiant Heart Companions was founded with a simple yet powerful mission: to help survivors of sexual assault reclaim their lives through the healing bond of a trained service dog.</p>
+                <p>Our organization specializes in training dogs to perform specific tasks that mitigate the symptoms of trauma, including creating space in crowded environments, providing deep pressure therapy during anxiety attacks, and offering a comforting presence during nightmares and flashbacks.</p>
+                <p>We believe that every survivor deserves access to the unique support that service dogs can provide, regardless of their financial situation. That's why we provide our dogs at little to no cost to qualified applicants.</p>
+                <a href="#about-more" class="btn btn-primary">Learn More About Us</a>
+            </div>
+            <div class="mission-image" style="background-image: url('https://images.unsplash.com/photo-1541599468348-e96984315921?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+        </div>
+    </section>
+    
+    <section id="impact">
+        <h2>Our Impact</h2>
+        <p>Since our founding, Valiant Heart Companions has made a significant difference in the lives of survivors across the country.</p>
+        
+        <div class="impact-stats">
+            <div class="stat-box">
+                <div class="stat-number">75+</div>
+                <p>Service dogs placed with survivors</p>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">92%</div>
+                <p>Recipients report improved quality of life</p>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">18</div>
+                <p>States reached with our program</p>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">3,500+</div>
+                <p>Hours of specialized training per dog</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="testimonials">
+        <h2>Testimonials</h2>
+        <p>Hear from survivors whose lives have been transformed through their partnership with a Valiant Heart service dog.</p>
+        
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>After my assault, I couldn't leave my apartment alone. The anxiety and hypervigilance were overwhelming. Since receiving Bella, everything has changed. She gives me the confidence to go grocery shopping, attend classes, and even enjoy social events again. She's not just a service dog—she's my lifeline to independence.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">J</div>
+                    <div class="testimonial-info">
+                        <h4>Jamie</h4>
+                        <p>Recipient, partnered with Bella since 2023</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>The nightmares were the worst part for me. I was afraid to sleep, which affected every aspect of my life. My service dog, Max, is trained to wake me during nightmares and provide deep pressure therapy. For the first time in years, I'm getting restful sleep. The difference in my mental health and daily functioning is remarkable.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">S</div>
+                    <div class="testimonial-info">
+                        <h4>Sam</h4>
+                        <p>Recipient, partnered with Max since 2022</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>Having Luna alert me when someone approaches from behind has eliminated countless panic attacks. It's hard to explain to someone who hasn't experienced trauma how valuable this simple task is. The Valiant Heart team took the time to understand my specific needs and trained Luna accordingly. I finally feel safe again.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">T</div>
+                    <div class="testimonial-info">
+                        <h4>Taylor</h4>
+                        <p>Recipient, partnered with Luna since 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="stories">
+        <h2>Survivor Stories</h2>
+        <p>Every survivor's journey is unique. Here are some of their stories and how service dogs have been instrumental in their healing process.</p>
+        
+        <div class="story-cards">
+            <div class="story-card">
+                <h3>Sarah's Journey to Healing</h3>
+                <p>After experiencing sexual assault in college, Sarah struggled with PTSD, panic attacks, and severe social anxiety that made it impossible to continue her education.</p>
+                <p>Three years after being paired with her service dog, Cooper, Sarah has completed her degree and is now working as an advocate for other survivors.</p>
+                <a href="#sarah-story" class="btn">Read Sarah's Full Story</a>
+            </div>
+            
+            <div class="story-card">
+                <h3>Michael's Return to Life</h3>
+                <p>As a male survivor, Michael faced unique challenges in finding support and resources. His hypervigilance and trust issues had isolated him from friends and family.</p>
+                <p>His service dog, Riley, has helped him navigate public spaces safely and reconnect with his community through a newfound sense of security.</p>
+                <a href="#michael-story" class="btn">Read Michael's Full Story</a>
+            </div>
+            
+            <div class="story-card">
+                <h3>Elena's Path to Independence</h3>
+                <p>After her assault, Elena developed agoraphobia so severe that she couldn't step outside her home alone. Simple tasks like checking the mail became overwhelming challenges.</p>
+                <p>With her service dog, Daisy, Elena has gradually reclaimed her independence, recently celebrating the milestone of traveling alone for the first time in five years.</p>
+                <a href="#elena-story" class="btn">Read Elena's Full Story</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="dogs">
+        <h2>Meet Our Dogs</h2>
+        <p>Our service dogs undergo rigorous selection and nearly two years of specialized training before they're matched with survivors. Get to know some of our amazing canine heroes.</p>
+        
+        <div class="dog-profiles">
+            <div class="dog-card">
+                <h3>Ranger</h3>
+                <p><strong>Breed:</strong> Labrador Retriever</p>
+                <p><strong>Special Skills:</strong> Deep pressure therapy, nightmare interruption, creating personal space in crowds</p>
+                <p>Ranger excels at sensing anxiety triggers before his handler even notices them, allowing for early intervention during potential panic attacks.</p>
+                <a href="#ranger-profile" class="btn">Learn More About Ranger</a>
+            </div>
+            
+            <div class="dog-card">
+                <h3>Lily</h3>
+                <p><strong>Breed:</strong> Golden Retriever</p>
+                <p><strong>Special Skills:</strong> Room clearing, perimeter checks, grounding during flashbacks</p>
+                <p>Lily's calm demeanor makes her particularly suited for survivors who struggle with hypervigilance in new environments.</p>
+                <a href="#lily-profile" class="btn">Learn More About Lily</a>
+            </div>
+            
+            <div class="dog-card">
+                <h3>Orion</h3>
+                <p><strong>Breed:</strong> Standard Poodle</p>
+                <p><strong>Special Skills:</strong> Alerting to approaching people, boundary enforcement, medication reminders</p>
+                <p>Orion's intelligence allows him to adapt quickly to new tasks as his handler's needs evolve throughout their recovery journey.</p>
+                <a href="#orion-profile" class="btn">Learn More About Orion</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="featured-blogs" class="featured-blogs">
+        <h2>Featured Articles From Our Blog</h2>
+        <p>Stay informed about service dog training, trauma recovery, and our latest news through these highlighted articles.</p>
+        
+        <div class="featured-blogs-container">
+            <div class="featured-blog">
+                <div class="featured-blog-image" style="background-image: url('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="featured-blog-content">
+                    <span class="featured-blog-category">Research</span>
+                    <h3 class="featured-blog-title">The Science Behind Service Dogs for PTSD</h3>
+                    <p class="featured-blog-excerpt">Recent research is shedding light on why service dogs are so effective for trauma survivors. Beyond the emotional support they provide, these dogs offer physiological benefits that can help regulate stress responses in the body.</p>
+                    <a href="blog.html" class="btn btn-primary">Read Article</a>
+                </div>
+            </div>
+            
+            <div class="featured-blog">
+                <div class="featured-blog-image" style="background-image: url('https://images.unsplash.com/photo-1541599468348-e96984315921?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="featured-blog-content">
+                    <span class="featured-blog-category">Resources</span>
+                    <h3 class="featured-blog-title">Understanding the ADA: Service Dog Rights & Responsibilities</h3>
+                    <p class="featured-blog-excerpt">Navigating public spaces with a service dog means understanding both your rights and responsibilities under the Americans with Disabilities Act (ADA). This comprehensive guide breaks down key information.</p>
+                    <a href="blog.html" class="btn btn-primary">Read Article</a>
+                </div>
+            </div>
+            
+            <div class="featured-blog">
+                <div class="featured-blog-image" style="background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="featured-blog-content">
+                    <span class="featured-blog-category">Training</span>
+                    <h3 class="featured-blog-title">From Puppy to Partner: Our Training Methodology</h3>
+                    <p class="featured-blog-excerpt">What does it take to transform a puppy into a specialized service dog for trauma survivors? Our head trainer explains our 18-month progressive training program and selection process.</p>
+                    <a href="blog.html" class="btn btn-primary">Read Article</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="blog.html" class="btn btn-secondary">View All Blog Posts</a>
+        </div>
+    </section>
+    
+    <section id="partners" class="partners-section">
+        <h2>Our Partners & Supporters</h2>
+        <p>We collaborate with trauma specialists, veterinary professionals, and community organizations to provide comprehensive support for survivors.</p>
+        
+        <div class="partners-logos">
+            <div class="partner-logo">
+                <span style="font-weight: bold; color: var(--primary);">Animal Wellness Center</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-weight: bold; color: var(--primary);">Trauma Recovery Institute</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-weight: bold; color: var(--primary);">National Service Dog Alliance</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-weight: bold; color: var(--primary);">Hope & Healing Foundation</span>
+            </div>
+        </div>
+    </section>
+    
+    <section id="donate" class="cta-section">
+        <div class="cta-content">
+            <h2>Support Our Mission</h2>
+            <p>It costs approximately $25,000 to select, raise, train, and place each service dog with a survivor. Your donation helps us provide these life-changing companions at little to no cost to survivors who need them.</p>
+            <div class="cta-buttons">
+                <a href="#donate-monthly" class="btn btn-primary">Become a Monthly Donor</a>
+                <a href="#donate-once" class="btn">Make a One-Time Gift</a>
+                <a href="#volunteer" class="btn btn-accent">Volunteer With Us</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions about our programs, application process, or how you can get involved? We're here to help.</p>
+        
+        <div class="contact-methods">
+            <div class="contact-method">
+                <h3>General Inquiries</h3>
+                <p>For information about our organization, programs, or services.</p>
+                <p><strong>Email:</strong> info@vhcompanions.org</p>
+                <p><strong>Phone:</strong> (555) 123-4567</p>
+            </div>
+            
+            <div class="contact-method">
+                <h3>Application Support</h3>
+                <p>For assistance with the service dog application process.</p>
+                <p><strong>Email:</strong> applications@vhcompanions.org</p>
+                <p><strong>Phone:</strong> (555) 123-4568</p>
+            </div>
+            
+            <div class="contact-method">
+                <h3>Donations & Partnerships</h3>
+                <p>For information about supporting our work or collaboration opportunities.</p>
+                <p><strong>Email:</strong> development@vhcompanions.org</p>
+                <p><strong>Phone:</strong> (555) 123-4569</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <svg width="180" height="60" viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 10 C 40 5, 50 5, 60 10 C 70 15, 80 15, 90 10 C 95 7, 100 5, 105 5 C 115 5, 125 10, 135 15 C 140 17, 145 18, 150 18 C 155 18, 160 17, 165 15" stroke="white" stroke-width="2" fill="none" />
+                    <circle cx="30" cy="30" r="20" fill="#a83c54" />
+                    <path d="M20 25 C 25 15, 35 15, 40 25 C 43 30, 43 35, 40 40 C 35 45, 25 45, 20 40 C 17 35, 17 30, 20 25 Z" fill="white" />
+                    <path d="M22 28 C 24 26, 26 26, 28 28 C 30 30, 30 32, 28 34 C 26 36, 24 36, 22 34 C 20 32, 20 30, 22 28 Z" fill="#333" />
+                    <path d="M32 28 C 34 26, 36 26, 38 28 C 40 30, 40 32, 38 34 C 36 36, 34 36, 32 34 C 30 32, 30 30, 32 28 Z" fill="#333" />
+                    <path d="M25 38 C 26 40, 28 42, 30 42 C 32 42, 34 40, 35 38" stroke="white" stroke-width="1.5" fill="none" />
+                    <polygon points="100,15 110,40 120,15" fill="white" />
+                    <polygon points="115,15 125,40 135,15" fill="white" />
+                    <rect x="140" y="15" width="25" height="25" rx="5" fill="white" />
+                    <rect x="70" y="15" width="25" height="25" rx="12.5" fill="white" />
+                    <text x="76" y="53" font-family="Arial" font-size="10" font-weight="bold" fill="white">VALIANT HEART</text>
+                </svg>
+                <p>Empowering survivors of sexual assault through specialized service dog training.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#dogs">Our Dogs</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#donate">Donate</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Email: info@vhcompanions.org</p>
+                <p>Phone: (555) 123-4567</p>
+                <p>123 Service Dog Lane<br>
+                Compassion City, ST 12345</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Valiant Heart Companions. All rights reserved.</p>
+            <p>A 501(c)(3) nonprofit organization dedicated to training service dogs for survivors of sexual assault.</p>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="back-to-top">↑</a>
+    
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
