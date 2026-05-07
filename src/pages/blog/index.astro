@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sorted = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const categories = ['All', 'Research', 'Training', 'Resources', 'Stories', 'News & Events'] as const;
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const categoryColors: Record<string, string> = {
+  Research: 'badge-primary',
+  Training: 'badge-secondary',
+  Resources: 'badge-accent',
+  Stories: 'badge-info',
+  'News & Events': 'badge-success',
+};
+---
+
+<BaseLayout
+  title="Blog & Research"
+  description="Evidence-based articles on psychiatric service dogs, PTSD recovery, trauma-informed care, and the science behind animal-assisted intervention from the Valiant Heart Companions team."
+>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- Hero -->
+  <section
+    class="py-20 text-white text-center"
+    style="background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 100%);"
+  >
+    <div class="section-container">
+      <div class="badge badge-accent badge-outline mb-6">Research & Stories</div>
+      <h1 class="font-heading text-5xl md:text-6xl font-bold mb-4 text-white">Blog & Resources</h1>
+      <p class="text-white/80 text-xl max-w-2xl mx-auto">
+        Evidence-based articles, training insights, survivor stories, and the
+        latest research on service dogs and trauma recovery.
+      </p>
+    </div>
+  </section>
+
+  <!-- Category filter -->
+  <section class="py-6 bg-white border-b border-linen-200 sticky top-[64px] z-30">
+    <div class="section-container">
+      <div class="flex flex-wrap gap-2 justify-center" role="navigation" aria-label="Filter posts by category">
+        {categories.map(cat => (
+          <a
+            href={cat === 'All' ? '/blog' : `/blog?category=${encodeURIComponent(cat)}`}
+            class="btn btn-sm rounded-full border border-linen-200 bg-linen hover:bg-primary hover:text-white hover:border-primary transition-colors text-neutral/70 font-medium"
+            aria-label={`Filter by ${cat}`}
+          >
+            {cat}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts grid -->
+  <section class="py-16 bg-linen">
+    <div class="section-container">
+      {sorted.length === 0 ? (
+        <div class="text-center py-20">
+          <div class="text-5xl mb-4" aria-hidden="true">📝</div>
+          <h2 class="font-heading text-2xl font-bold text-neutral mb-2">Articles Coming Soon</h2>
+          <p class="text-neutral/60">Check back shortly for our first articles on service dogs and trauma recovery.</p>
+        </div>
+      ) : (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sorted.map(post => (
+            <article class="card-warm overflow-hidden flex flex-col group">
+              {post.data.image && (
+                <a href={`/blog/${post.slug}`} class="block overflow-hidden">
+                  <div
+                    class="aspect-[16/9] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={`background-image: url('${post.data.image}');`}
+                    role="img"
+                    aria-label={post.data.title}
+                  ></div>
+                </a>
+              )}
+              <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class={`badge badge-sm ${categoryColors[post.data.category] ?? 'badge-outline'} font-semibold`}>
+                    {post.data.category}
+                  </span>
+                  {post.data.readingTime && (
+                    <span class="text-neutral/45 text-xs">{post.data.readingTime} min read</span>
+                  )}
+                </div>
+                <h2 class="font-heading font-bold text-neutral text-xl mb-2 leading-snug">
+                  <a href={`/blog/${post.slug}`} class="hover:text-primary transition-colors">
+                    {post.data.title}
+                  </a>
+                </h2>
+                <p class="text-neutral/65 text-sm leading-relaxed mb-4 flex-1">{post.data.description}</p>
+                <div class="flex items-center justify-between pt-4 border-t border-linen-200">
+                  <div class="text-neutral/50 text-xs">{formatDate(post.data.pubDate)}</div>
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="text-primary font-semibold text-sm hover:underline"
+                    aria-label={`Read ${post.data.title}`}
+                  >
+                    Read →
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="py-14 bg-white">
+    <div class="section-container max-w-2xl text-center">
+      <h2 class="section-heading heading-accent mx-auto mb-3">Stay Informed</h2>
+      <p class="section-subheading mx-auto mb-8">
+        New research, training updates, and program news — delivered when it matters.
+        No spam, ever. Unsubscribe anytime.
+      </p>
+      <div class="card-warm p-8">
+        <a
+          href="mailto:info@vhcompanions.org?subject=Newsletter%20Signup"
+          class="btn btn-primary rounded-full px-10"
+        >
+          Subscribe via Email
+        </a>
+        <p class="text-neutral/50 text-xs mt-4">
+          We'll respond with a confirmation. Typically 1–2 emails per month.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

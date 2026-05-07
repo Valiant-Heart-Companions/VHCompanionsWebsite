@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Donate"
+  description="Support Valiant Heart Companions — your tax-deductible gift trains and places psychiatric service dogs with sexual assault survivors at little to no cost. 501(c)(3) nonprofit, EIN 82-4410052."
+>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- Hero -->
+  <section
+    class="relative py-20 text-white text-center"
+    style="background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 100%);"
+  >
+    <div class="section-container max-w-3xl relative z-10">
+      <div class="badge badge-accent badge-outline mb-6">Tax-Deductible Gift</div>
+      <h1 class="font-heading text-5xl md:text-6xl font-bold mb-4 text-white">
+        Your Gift Trains<br class="hidden sm:block" />a Life-Saving Partner
+      </h1>
+      <p class="text-white/80 text-xl max-w-xl mx-auto">
+        Every dollar goes toward training, placing, and supporting service dogs
+        for survivors who can't afford the $25,000 price tag on their own.
+      </p>
+      <!-- Trust line -->
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-8 text-white/65 text-xs">
+        <span>✓ 501(c)(3) Verified Nonprofit</span>
+        <span>✓ EIN 82-4410052</span>
+        <span>✓ 100% supports survivor placement</span>
+        <span>✓ Secure payment processing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Progress bar (manually updated) -->
+  <section class="py-10 bg-white border-b border-linen-200">
+    <div class="section-container max-w-2xl">
+      <div class="flex justify-between items-end mb-3">
+        <div>
+          <h3 class="font-heading font-bold text-neutral text-lg">Help Place Our Next Dog</h3>
+          <p class="text-neutral/60 text-sm">Training fund for our current cohort</p>
+        </div>
+        <div class="text-right">
+          <div class="font-heading font-bold text-primary text-xl">$18,400</div>
+          <div class="text-neutral/55 text-xs">of $25,000 goal</div>
+        </div>
+      </div>
+      <div class="h-4 bg-linen rounded-full overflow-hidden border border-linen-200">
+        <div
+          class="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-700"
+          style="width: 73.6%;"
+          role="progressbar"
+          aria-valuenow={73}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="73% of fundraising goal reached"
+        ></div>
+      </div>
+      <div class="flex justify-between text-xs text-neutral/45 mt-2">
+        <span>73% funded</span>
+        <span>$6,600 to go</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donation form + sidebar -->
+  <section class="py-16 bg-linen">
+    <div class="section-container max-w-5xl">
+      <div class="grid lg:grid-cols-3 gap-10">
+
+        <!-- Donation form embed -->
+        <div class="lg:col-span-2">
+          <div class="card-warm overflow-hidden">
+            <div class="bg-primary px-6 py-4">
+              <h2 class="font-heading font-bold text-white text-xl">Make a Gift</h2>
+              <p class="text-white/75 text-sm">Secure · Tax-deductible · No account required</p>
+            </div>
+
+            <!-- Qgiv embed -->
+            <div class="p-2">
+              <iframe
+                title="Donation Form"
+                src="https://secure.qgiv.com/for/vhcompanions/event/51178/"
+                seamless
+                class="w-full rounded-lg"
+                style="min-height: 600px; border: none;"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- What your gift does -->
+          <div class="card-warm p-6">
+            <h3 class="font-heading font-bold text-neutral text-lg mb-4">What Your Gift Does</h3>
+            <div class="space-y-4">
+              {[
+                { amount: '$25', impact: 'One week of food and enrichment for a dog in training' },
+                { amount: '$100', impact: 'One specialized training session with a certified trainer' },
+                { amount: '$500', impact: 'One month of full board-and-train program' },
+                { amount: '$2,500', impact: 'Full equipment, harness, and gear for one placement' },
+                { amount: '$5,000', impact: 'Five months of training — half the journey to placement' },
+              ].map(({ amount, impact }) => (
+                <div class="flex gap-3 items-start">
+                  <div class="flex-shrink-0 bg-accent/15 text-accent font-heading font-bold text-sm px-2 py-1 rounded-lg min-w-[52px] text-center">{amount}</div>
+                  <p class="text-neutral/70 text-sm leading-relaxed">{impact}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Monthly giving -->
+          <div class="bg-secondary/10 border border-secondary/20 rounded-2xl p-6">
+            <div class="text-2xl mb-3" aria-hidden="true">🔄</div>
+            <h3 class="font-heading font-bold text-neutral text-base mb-2">Give Monthly</h3>
+            <p class="text-neutral/65 text-sm leading-relaxed mb-3">
+              Monthly donors fund uninterrupted training — no gaps, no delays.
+              A $42/month gift covers one dog's training costs for a year.
+            </p>
+            <p class="text-xs text-neutral/50">Select "Monthly" in the form to set up recurring giving.</p>
+          </div>
+
+          <!-- Tax info -->
+          <div class="bg-linen rounded-2xl p-5 border border-linen-200">
+            <h3 class="font-semibold text-neutral text-sm mb-2">Tax Deductibility</h3>
+            <p class="text-neutral/60 text-xs leading-relaxed">
+              Valiant Heart Companions is a registered 501(c)(3) nonprofit organization.
+              EIN: 82-4410052. Donations are tax-deductible to the extent permitted by law.
+              You will receive an email receipt for your records.
+            </p>
+          </div>
+
+          <!-- Other ways to give -->
+          <div class="card-warm p-6">
+            <h3 class="font-heading font-bold text-neutral text-base mb-3">Other Ways to Give</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <div class="font-semibold text-neutral text-sm">By Check</div>
+                <div class="text-neutral/60 text-xs mt-0.5">
+                  Payable to "Valiant Heart Companions"<br/>
+                  1635 West Daughtery Road<br/>
+                  Lakeland, FL 33810
+                </div>
+              </div>
+              <div class="border-t border-linen-200 pt-3">
+                <div class="font-semibold text-neutral text-sm">Donor-Advised Fund</div>
+                <div class="text-neutral/60 text-xs mt-0.5">
+                  Use EIN 82-4410052 to designate a grant from your DAF.
+                </div>
+              </div>
+              <div class="border-t border-linen-200 pt-3">
+                <div class="font-semibold text-neutral text-sm">Corporate Matching</div>
+                <div class="text-neutral/60 text-xs mt-0.5">
+                  Many employers match donations. Check with your HR department — it could double your impact.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact testimonial -->
+  <section class="py-16 bg-white">
+    <div class="section-container max-w-2xl text-center">
+      <blockquote class="relative">
+        <span class="text-7xl text-primary/10 font-heading leading-none block mb-2" aria-hidden="true">"</span>
+        <p class="font-heading text-2xl font-bold text-neutral italic leading-relaxed mb-6 -mt-4">
+          He doesn't fix what happened. But he makes me feel safe enough to live again.
+        </p>
+        <footer class="text-neutral/55 text-sm">
+          — Sarah, Valiant Heart Companions recipient, 2022
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 bg-linen">
+    <div class="section-container max-w-2xl">
+      <h2 class="section-heading heading-accent text-center mx-auto mb-8">Donation FAQs</h2>
+      <div class="space-y-3">
+        {[
+          {
+            q: 'Will 100% of my gift go to dog training?',
+            a: 'We strive to direct the maximum share of every donation to program expenses. As a small nonprofit, a portion covers necessary operational costs (accounting, website, filings). We publish our financial breakdown annually and are committed to transparency.',
+          },
+          {
+            q: 'Can I donate in honor or memory of someone?',
+            a: 'Yes. Select the tribute giving option in the donation form. We will send an acknowledgment to the honoree or their family if you provide contact details.',
+          },
+          {
+            q: 'Is my donation secure?',
+            a: 'Yes. We use Qgiv, a PCI-compliant payment processor used by thousands of nonprofits. Your card information is never stored on our servers.',
+          },
+          {
+            q: 'Can I cancel a recurring gift?',
+            a: 'Absolutely. You can cancel or modify your recurring gift at any time by emailing development@vhcompanions.org. There are no penalties or fees.',
+          },
+        ].map(({ q, a }) => (
+          <details class="card-warm group">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-neutral hover:text-primary transition-colors text-sm">
+              <span>{q}</span>
+              <svg class="w-4 h-4 flex-shrink-0 transition-transform group-open:rotate-180 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-5 pb-5 text-neutral/65 text-sm leading-relaxed">
+              {a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

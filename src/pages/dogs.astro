@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const dogs = await getCollection('dogs');
+const sorted = dogs.sort((a, b) => a.data.order - b.data.order);
+
+const inTraining = sorted.filter(d => d.data.status === 'In Training');
+const placed = sorted.filter(d => d.data.status === 'Placed');
+const available = sorted.filter(d => d.data.status === 'Available for Placement');
+
+const statusStyle: Record<string, string> = {
+  'In Training': 'badge-warning',
+  'Placed': 'badge-success',
+  'Available for Placement': 'badge-info',
+};
+---
+
+<BaseLayout
+  title="Our Dogs"
+  description="Meet the dogs of Valiant Heart Companions — Labrador Retrievers, Golden Retrievers, and Standard Poodles training to become life-changing psychiatric service dogs for survivors."
+>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- Hero -->
+  <section
+    class="relative py-24 text-white text-center"
+    style="background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 100%);"
+  >
+    <div class="section-container relative z-10">
+      <div class="badge badge-accent badge-outline mb-6">Meet the Team</div>
+      <h1 class="font-heading text-5xl md:text-6xl font-bold mb-4 text-white">Our Dogs</h1>
+      <p class="text-white/80 text-xl max-w-2xl mx-auto">
+        Every dog in our program is hand-selected for temperament, health, and trainability.
+        Follow their journeys from puppy to partner.
+      </p>
+    </div>
+  </section>
+
+  <!-- Program overview -->
+  <section class="py-14 bg-white">
+    <div class="section-container max-w-4xl">
+      <div class="grid sm:grid-cols-3 gap-6 text-center">
+        {[
+          { stat: '12–20', label: 'Months of Training', icon: '📅' },
+          { stat: '8–15', label: 'Custom Tasks Learned', icon: '🎯' },
+          { stat: '$0', label: 'Cost to Qualified Recipients', icon: '♥' },
+        ].map(({ stat, label, icon }) => (
+          <div class="bg-linen rounded-2xl p-6 border border-linen-200">
+            <div class="text-3xl mb-2" aria-hidden="true">{icon}</div>
+            <div class="stat-big">{stat}</div>
+            <div class="text-neutral/65 text-sm mt-1">{label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Available for placement -->
+  {available.length > 0 && (
+    <section class="py-16 bg-linen">
+      <div class="section-container">
+        <div class="text-center mb-10">
+          <h2 class="section-heading heading-accent mx-auto mb-3">Ready for Placement</h2>
+          <p class="section-subheading mx-auto">
+            These dogs have completed training and are waiting to be matched with their partner.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {available.map(dog => (
+            <div class="card-warm overflow-hidden group">
+              <div
+                class="aspect-[4/3] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                style={`background-image: url('${dog.data.image}');`}
+                role="img"
+                aria-label={dog.data.imageAlt}
+              >
+                <div class="h-full bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
+                  <span class={`badge ${statusStyle[dog.data.status]} font-semibold`}>{dog.data.status}</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-heading font-bold text-2xl text-neutral mb-1">{dog.data.name}</h3>
+                <p class="text-neutral/60 text-sm mb-3">{dog.data.breed}</p>
+                <p class="text-neutral/70 text-sm leading-relaxed mb-4">{dog.data.personality}</p>
+                <div class="flex flex-wrap gap-1.5">
+                  {dog.data.skills.slice(0, 4).map(skill => (
+                    <span class="badge badge-sm badge-outline text-xs">{skill}</span>
+                  ))}
+                  {dog.data.skills.length > 4 && (
+                    <span class="badge badge-sm text-xs">+{dog.data.skills.length - 4} more</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- In training -->
+  {inTraining.length > 0 && (
+    <section class="py-16 bg-white">
+      <div class="section-container">
+        <div class="text-center mb-10">
+          <h2 class="section-heading heading-accent mx-auto mb-3">Currently in Training</h2>
+          <p class="section-subheading mx-auto">
+            These dogs are working hard every day to learn the skills that will change a life.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {inTraining.map(dog => (
+            <div class="card-warm overflow-hidden group">
+              <div
+                class="aspect-[4/3] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                style={`background-image: url('${dog.data.image}');`}
+                role="img"
+                aria-label={dog.data.imageAlt}
+              >
+                <div class="h-full bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
+                  <span class={`badge ${statusStyle[dog.data.status]} font-semibold`}>{dog.data.status}</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-heading font-bold text-2xl text-neutral mb-1">{dog.data.name}</h3>
+                <p class="text-neutral/60 text-sm mb-3">{dog.data.breed}</p>
+                <p class="text-neutral/70 text-sm leading-relaxed mb-4">{dog.data.personality}</p>
+                <div class="flex flex-wrap gap-1.5">
+                  {dog.data.skills.slice(0, 4).map(skill => (
+                    <span class="badge badge-sm badge-outline text-xs">{skill}</span>
+                  ))}
+                  {dog.data.skills.length > 4 && (
+                    <span class="badge badge-sm text-xs">+{dog.data.skills.length - 4} more</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Placed dogs -->
+  {placed.length > 0 && (
+    <section class="py-16 bg-linen">
+      <div class="section-container">
+        <div class="text-center mb-10">
+          <h2 class="section-heading heading-accent mx-auto mb-3">Living Their Purpose</h2>
+          <p class="section-subheading mx-auto">
+            These dogs have been placed with their partners and are changing lives every day.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {placed.map(dog => (
+            <div class="card-warm overflow-hidden group">
+              <div
+                class="aspect-[4/3] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                style={`background-image: url('${dog.data.image}');`}
+                role="img"
+                aria-label={dog.data.imageAlt}
+              >
+                <div class="h-full bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
+                  <span class={`badge ${statusStyle[dog.data.status]} font-semibold`}>{dog.data.status}</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-heading font-bold text-2xl text-neutral mb-1">{dog.data.name}</h3>
+                <p class="text-neutral/60 text-sm mb-3">{dog.data.breed}</p>
+                <p class="text-neutral/70 text-sm leading-relaxed mb-4">{dog.data.personality}</p>
+                <div class="flex flex-wrap gap-1.5">
+                  {dog.data.skills.slice(0, 4).map(skill => (
+                    <span class="badge badge-sm badge-outline text-xs">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Fallback if no dogs in collection yet -->
+  {dogs.length === 0 && (
+    <section class="py-20 bg-white">
+      <div class="section-container max-w-3xl">
+        <div class="text-center mb-12">
+          <h2 class="section-heading heading-accent mx-auto mb-3">Meet Our Current Dogs</h2>
+          <p class="section-subheading mx-auto">
+            Dog profiles are coming soon. Check back shortly for updates on our current training cohort.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {[
+            { name: 'Ranger', breed: 'Labrador Retriever', status: 'In Training', img: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=600&q=80', alt: 'A yellow Labrador Retriever looking at the camera' },
+            { name: 'Lily', breed: 'Golden Retriever', status: 'In Training', img: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?auto=format&fit=crop&w=600&q=80', alt: 'A Golden Retriever sitting in grass' },
+            { name: 'Orion', breed: 'Standard Poodle', status: 'Available for Placement', img: 'https://images.unsplash.com/photo-1594149929911-78975a43d4f5?auto=format&fit=crop&w=600&q=80', alt: 'A black Standard Poodle in a training vest' },
+          ].map(({ name, breed, status, img, alt }) => (
+            <div class="card-warm overflow-hidden group">
+              <div
+                class="aspect-[4/3] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                style={`background-image: url('${img}');`}
+                role="img"
+                aria-label={alt}
+              >
+                <div class="h-full bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
+                  <span class={`badge font-semibold ${status === 'Available for Placement' ? 'badge-info' : 'badge-warning'}`}>{status}</span>
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-heading font-bold text-xl text-neutral mb-1">{name}</h3>
+                <p class="text-neutral/60 text-sm">{breed}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Sponsor a dog -->
+  <section class="py-16 bg-secondary text-white text-center">
+    <div class="section-container max-w-xl">
+      <h2 class="font-heading text-3xl font-bold text-white mb-3">Sponsor a Dog in Training</h2>
+      <p class="text-white/75 mb-8 text-sm leading-relaxed">
+        It costs approximately $25,000 to fully train and place one service dog.
+        Your gift — at any amount — helps us get more dogs to the survivors who need them.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/donate" class="btn btn-accent rounded-full px-10 text-base">♥ Donate to Our Dogs</a>
+        <a href="/volunteer" class="btn btn-outline border-white/40 text-white hover:bg-white/10 rounded-full px-8">Volunteer Instead</a>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

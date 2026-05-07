@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="About Us"
+  description="Learn about Valiant Heart Companions — our founding story, mission, values, and the team behind our 501(c)(3) nonprofit training service dogs for sexual assault survivors."
+>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- Page hero -->
+  <section
+    class="relative py-24 text-white text-center"
+    style="background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 60%, #4a7a60 100%);"
+  >
+    <div class="section-container relative z-10">
+      <div class="badge badge-accent badge-outline mb-6">Our Story</div>
+      <h1 class="font-heading text-5xl md:text-6xl font-bold mb-4 text-white">
+        More Than a Mission —<br class="hidden sm:block" />A Promise
+      </h1>
+      <p class="text-white/80 text-xl max-w-2xl mx-auto">
+        Valiant Heart Companions was built on a belief that every survivor deserves
+        the healing that only a well-trained service dog can provide.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our story -->
+  <section class="py-20 bg-white">
+    <div class="section-container">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+        <div>
+          <span class="badge badge-secondary badge-outline mb-4">Founding Story</span>
+          <h2 class="section-heading heading-accent mb-6">How We Began</h2>
+          <div class="space-y-4 text-neutral/75 leading-relaxed">
+            <p>
+              Valiant Heart Companions was founded after witnessing firsthand how a
+              service dog transformed the life of a sexual assault survivor — and
+              realizing that for most survivors, the $20,000–$30,000 cost of a professionally
+              trained service dog was simply unattainable.
+            </p>
+            <p>
+              Our founders believed that this healing shouldn't be reserved for those
+              who could afford it. We set out to build a nonprofit that would bridge that
+              gap — selecting, raising, and training world-class service dogs, then
+              placing them with survivors at little to no cost.
+            </p>
+            <p>
+              Today, we have placed over 75 dogs across 18 states. Each placement
+              represents a survivor who can now sleep through the night, leave their home,
+              or simply feel safe in their own body again.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="rounded-2xl overflow-hidden aspect-[4/3] shadow-xl"
+          style="background-image: url('https://images.unsplash.com/photo-1541599468348-e96984315921?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"
+          role="img"
+          aria-label="Trainer working with a service dog"
+        ></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Values -->
+  <section class="py-20 bg-linen">
+    <div class="section-container">
+      <div class="text-center mb-14">
+        <h2 class="section-heading heading-accent mx-auto mb-3">Our Mission & Values</h2>
+        <p class="section-subheading mx-auto">
+          Four principles guide every decision we make.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          {
+            icon: '🐾',
+            title: 'Survivor-Centered',
+            desc: 'Every dog is trained to address the specific trauma responses of their individual partner — not a one-size-fits-all model.',
+          },
+          {
+            icon: '🌱',
+            title: 'Accessible',
+            desc: 'We provide dogs at little to no cost to qualified applicants. Healing shouldn\'t depend on the size of your bank account.',
+          },
+          {
+            icon: '🔬',
+            title: 'Evidence-Based',
+            desc: 'Our training protocols are grounded in the latest research on trauma-informed animal-assisted intervention.',
+          },
+          {
+            icon: '🤝',
+            title: 'Lifelong Partnership',
+            desc: 'We support every team beyond placement — with ongoing training, community, and professional guidance for the life of the partnership.',
+          },
+        ].map(({ icon, title, desc }) => (
+          <div class="card-warm p-6 text-center">
+            <div class="text-4xl mb-4" aria-hidden="true">{icon}</div>
+            <h3 class="font-heading font-bold text-neutral text-lg mb-2">{title}</h3>
+            <p class="text-neutral/65 text-sm leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Transparency -->
+  <section class="py-20 bg-white">
+    <div class="section-container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="section-heading heading-accent mx-auto mb-6">Transparency You Can Trust</h2>
+        <p class="text-neutral/70 leading-relaxed mb-10">
+          We believe donors and applicants deserve to know exactly who they're working with.
+          Valiant Heart Companions is a registered 501(c)(3) nonprofit organization.
+          Our filings are public, our impact is measurable, and our commitment is absolute.
+        </p>
+        <div class="grid sm:grid-cols-3 gap-6 mb-10">
+          {[
+            { label: 'Organization Name', value: 'Valiant Heart Companions' },
+            { label: 'EIN', value: '82-4410052' },
+            { label: 'Status', value: '501(c)(3) Nonprofit' },
+          ].map(({ label, value }) => (
+            <div class="bg-linen rounded-2xl p-6 border border-linen-200">
+              <div class="text-xs font-bold tracking-widest uppercase text-neutral/50 mb-2">{label}</div>
+              <div class="font-heading font-semibold text-neutral text-lg">{value}</div>
+            </div>
+          ))}
+        </div>
+        <p class="text-neutral/60 text-sm mb-6">
+          All donations are tax-deductible to the extent permitted by law.
+          Please consult your tax advisor for details specific to your situation.
+        </p>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <a href="/donate" class="btn btn-primary rounded-full">Support Our Work</a>
+          <a href="/contact" class="btn btn-outline btn-primary rounded-full">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Contact Us"
+  description="Get in touch with Valiant Heart Companions. Reach our team for program inquiries, application support, donation questions, and partnership opportunities."
+>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- Hero -->
+  <section
+    class="py-20 text-white text-center"
+    style="background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 100%);"
+  >
+    <div class="section-container">
+      <h1 class="font-heading text-5xl font-bold mb-4 text-white">Let's Connect</h1>
+      <p class="text-white/80 text-xl max-w-xl mx-auto">
+        Whatever your question, our team will respond within 3 business days.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact cards -->
+  <section class="py-20 bg-white">
+    <div class="section-container max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-6 mb-14">
+        {[
+          {
+            icon: '✉️',
+            title: 'General Inquiries',
+            desc: 'Questions about our organization, programs, or mission.',
+            email: 'info@vhcompanions.org',
+          },
+          {
+            icon: '🐾',
+            title: 'Application Support',
+            desc: 'Questions about the service dog application process.',
+            email: 'applications@vhcompanions.org',
+          },
+          {
+            icon: '♥',
+            title: 'Donations & Partnerships',
+            desc: 'Supporting our work or collaboration opportunities.',
+            email: 'development@vhcompanions.org',
+          },
+        ].map(({ icon, title, desc, email }) => (
+          <div class="card-warm p-6 text-center">
+            <div class="text-3xl mb-3" aria-hidden="true">{icon}</div>
+            <h3 class="font-heading font-bold text-neutral text-lg mb-2">{title}</h3>
+            <p class="text-neutral/65 text-sm leading-relaxed mb-4">{desc}</p>
+            <a href={`mailto:${email}`} class="text-primary font-semibold text-sm hover:underline break-all">
+              {email}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Address -->
+      <div class="text-center">
+        <div class="inline-block bg-linen rounded-2xl px-8 py-5 border border-linen-200">
+          <div class="text-2xl mb-2" aria-hidden="true">📍</div>
+          <div class="font-heading font-semibold text-neutral text-lg mb-1">Mailing Address</div>
+          <address class="not-italic text-neutral/70 text-sm">
+            1635 West Daughtery Road<br>
+            Lakeland, FL 33810
+          </address>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy note -->
+  <section class="py-10 bg-linen">
+    <div class="section-container max-w-2xl">
+      <div class="bg-white rounded-xl p-5 border border-linen-200 text-sm text-neutral/65 leading-relaxed">
+        <strong class="text-neutral">Your Privacy:</strong> We respect your privacy and are committed to
+        protecting any personal information you share with us. We will never sell or share your information
+        with third parties for marketing purposes. See our <a href="/privacy" class="text-primary hover:underline font-semibold">Privacy Policy</a> for full details.
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

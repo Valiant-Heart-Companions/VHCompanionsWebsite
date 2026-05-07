@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const allPosts = await getCollection('blog');
+const related = allPosts
+  .filter(p => p.slug !== post.slug && p.data.category === post.data.category)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const categoryColors: Record<string, string> = {
+  Research: 'badge-primary',
+  Training: 'badge-secondary',
+  Resources: 'badge-accent',
+  Stories: 'badge-info',
+  'News & Events': 'badge-success',
+};
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image}
+>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- Article hero -->
+  <section
+    class="relative py-20 text-white"
+    style={post.data.image
+      ? `background-image: linear-gradient(to bottom, rgba(30,55,40,0.85) 0%, rgba(30,55,40,0.95) 100%), url('${post.data.image}'); background-size: cover; background-position: center;`
+      : 'background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 100%);'
+    }
+  >
+    <div class="section-container max-w-3xl">
+      <div class="flex items-center gap-3 mb-6">
+        <a href="/blog" class="text-white/60 hover:text-white text-sm transition-colors">← All Articles</a>
+        <span class="text-white/30">|</span>
+        <span class={`badge badge-sm ${categoryColors[post.data.category] ?? 'badge-outline'}`}>{post.data.category}</span>
+      </div>
+      <h1 class="font-heading text-4xl md:text-5xl font-bold mb-5 text-white leading-tight">
+        {post.data.title}
+      </h1>
+      <p class="text-white/75 text-lg leading-relaxed mb-6">{post.data.description}</p>
+      <div class="flex items-center gap-4 text-white/60 text-sm flex-wrap">
+        <span>{post.data.author}</span>
+        <span>·</span>
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+        {post.data.readingTime && (
+          <>
+            <span>·</span>
+            <span>{post.data.readingTime} min read</span>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Article content -->
+  <section class="py-16 bg-white">
+    <div class="section-container max-w-3xl">
+      <div class="prose prose-neutral max-w-none prose-warm
+        prose-headings:font-heading prose-headings:font-bold prose-headings:text-neutral
+        prose-p:text-neutral/75 prose-p:leading-relaxed
+        prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-neutral
+        prose-li:text-neutral/75
+        prose-blockquote:border-primary prose-blockquote:bg-linen prose-blockquote:rounded-r-xl prose-blockquote:py-1 prose-blockquote:not-italic
+        prose-img:rounded-2xl prose-img:shadow-lg
+        prose-hr:border-linen-200
+      ">
+        <Content />
+      </div>
+
+      <!-- Share / CTA -->
+      <div class="mt-14 pt-10 border-t border-linen-200 flex flex-wrap gap-4 items-center justify-between">
+        <div class="text-neutral/55 text-sm">
+          Published by {post.data.author} · {formatDate(post.data.pubDate)}
+        </div>
+        <div class="flex gap-3">
+          <a href="/blog" class="btn btn-sm btn-outline btn-primary rounded-full">← More Articles</a>
+          <a href="/apply" class="btn btn-sm btn-primary rounded-full">Apply for a Dog →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related posts -->
+  {related.length > 0 && (
+    <section class="py-14 bg-linen">
+      <div class="section-container max-w-4xl">
+        <h2 class="font-heading text-2xl font-bold text-neutral mb-8">Related Articles</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {related.map(rp => (
+            <article class="card-warm overflow-hidden group">
+              {rp.data.image && (
+                <div
+                  class="aspect-[16/9] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  style={`background-image: url('${rp.data.image}');`}
+                  role="img"
+                  aria-label={rp.data.title}
+                ></div>
+              )}
+              <div class="p-5">
+                <span class={`badge badge-sm ${categoryColors[rp.data.category] ?? 'badge-outline'} mb-2`}>{rp.data.category}</span>
+                <h3 class="font-heading font-bold text-neutral mb-2 leading-snug text-base">
+                  <a href={`/blog/${rp.slug}`} class="hover:text-primary transition-colors">{rp.data.title}</a>
+                </h3>
+                <p class="text-neutral/60 text-xs leading-relaxed">{rp.data.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

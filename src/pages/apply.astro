@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Apply for a Service Dog"
+  description="Apply for a Valiant Heart Companions service dog. Our program serves adult survivors of sexual assault across the US, providing dogs at little to no cost."
+>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- Hero -->
+  <section
+    class="relative py-24 text-white text-center"
+    style="background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 100%);"
+  >
+    <div class="section-container relative z-10">
+      <div class="badge badge-accent badge-outline mb-6">Applications Open</div>
+      <h1 class="font-heading text-5xl md:text-6xl font-bold mb-4 text-white">
+        Take the First Step
+      </h1>
+      <p class="text-white/80 text-xl max-w-2xl mx-auto">
+        Applying is free. There's no waitlist fee, no pressure, and no wrong answers.
+        Our team reviews every application personally.
+      </p>
+    </div>
+  </section>
+
+  <!-- Eligibility -->
+  <section class="py-16 bg-white">
+    <div class="section-container max-w-4xl">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="section-heading heading-accent mb-6">Who We Serve</h2>
+          <ul class="space-y-3 text-neutral/75">
+            {[
+              'Adult survivors (18+) of sexual assault',
+              'US residents in any state',
+              'Any gender identity or background',
+              'Diagnosed with or showing symptoms of PTSD, anxiety, or related trauma response',
+              'Able to care for and work with a dog in their daily life',
+              'Have a stable living situation that allows for a service dog',
+            ].map(item => (
+              <li class="flex items-start gap-3">
+                <span class="text-primary font-bold mt-0.5 flex-shrink-0">✓</span>
+                <span class="text-sm leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-6 bg-linen rounded-xl p-4 border border-linen-200">
+            <p class="text-sm text-neutral/70 leading-relaxed">
+              <strong class="text-neutral">Not sure if you qualify?</strong> Apply anyway and our team will reach out.
+              We'd rather have a conversation than have a survivor not get help they need.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="section-heading heading-accent mb-6">What to Expect</h2>
+          <div class="space-y-4">
+            {[
+              { n: '1', t: 'Submit this application', d: 'Takes about 20 minutes. You only share what you\'re comfortable sharing.' },
+              { n: '2', t: 'Intake call (within 2 weeks)', d: 'A brief call with our compassionate intake coordinator to discuss your needs.' },
+              { n: '3', t: 'Matching & training begins', d: 'We identify your match and begin specialized training — this takes 12–20 months.' },
+              { n: '4', t: 'Team training & placement', d: 'A two-week in-person training period, then your dog comes home with you.' },
+            ].map(({ n, t, d }) => (
+              <div class="flex gap-4">
+                <div class="step-circle flex-shrink-0 w-8 h-8 text-sm">{n}</div>
+                <div>
+                  <div class="font-semibold text-neutral text-sm">{t}</div>
+                  <div class="text-neutral/60 text-xs leading-relaxed">{d}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application form section -->
+  <section class="py-16 bg-linen" id="application">
+    <div class="section-container max-w-3xl">
+      <div class="text-center mb-10">
+        <h2 class="section-heading heading-accent mx-auto mb-3">Service Dog Application</h2>
+        <p class="section-subheading mx-auto">
+          Your responses are confidential. Only our team will see this information.
+        </p>
+      </div>
+
+      <!-- Form embed placeholder - replace src with your actual form URL -->
+      <div class="card-warm overflow-hidden">
+        <div class="p-8 text-center">
+          <div class="text-5xl mb-4" aria-hidden="true">📋</div>
+          <h3 class="font-heading font-bold text-xl text-neutral mb-3">Application Form</h3>
+          <p class="text-neutral/70 text-sm leading-relaxed mb-6 max-w-md mx-auto">
+            To begin your application, please email us at
+            <a href="mailto:applications@vhcompanions.org" class="text-primary font-semibold hover:underline">
+              applications@vhcompanions.org
+            </a>
+            with the subject line "Service Dog Application" and a brief description of your situation.
+            Our intake team responds within 3 business days.
+          </p>
+          <a href="mailto:applications@vhcompanions.org?subject=Service%20Dog%20Application" class="btn btn-primary rounded-full px-8">
+            Email to Apply
+          </a>
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-neutral/50 mt-6">
+        Your privacy is protected. We will never share your information without your explicit consent.
+        Read our <a href="/privacy" class="underline hover:text-primary">Privacy Policy</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Support note -->
+  <section class="py-12 bg-white">
+    <div class="section-container max-w-2xl text-center">
+      <h3 class="font-heading font-bold text-2xl text-neutral mb-3">Need Support While You Wait?</h3>
+      <p class="text-neutral/70 leading-relaxed mb-6 text-sm">
+        We know the wait can be difficult. While your application is being processed, here are some resources
+        that may help.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-4 text-left">
+        {[
+          { name: 'RAINN National Hotline', detail: '1-800-656-4673', link: 'https://www.rainn.org' },
+          { name: 'Crisis Text Line', detail: 'Text HOME to 741741', link: 'https://www.crisistextline.org' },
+          { name: 'Psychology Today', detail: 'Find a trauma therapist', link: 'https://www.psychologytoday.com' },
+        ].map(({ name, detail, link }) => (
+          <a href={link} target="_blank" rel="noopener noreferrer" class="card-warm p-4 hover:border-primary/20">
+            <div class="font-semibold text-neutral text-sm">{name}</div>
+            <div class="text-neutral/55 text-xs mt-1">{detail}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
