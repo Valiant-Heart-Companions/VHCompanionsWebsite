@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Typography ─────────────────────────────────────────── */
+@layer base {
+  body {
+    @apply font-body bg-linen text-neutral antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* ── Reusable utilities ──────────────────────────────────── */
+@layer components {
+  /* Section wrapper */
+  .section-container {
+    @apply max-w-6xl mx-auto px-6;
+  }
+
+  /* Section headings */
+  .section-heading {
+    @apply font-heading text-3xl md:text-4xl font-bold text-neutral leading-tight;
+  }
+
+  .section-subheading {
+    @apply text-lg text-neutral/70 mt-3 max-w-2xl;
+  }
+
+  /* Decorative underline accent on headings */
+  .heading-accent {
+    @apply relative inline-block pb-3;
+  }
+
+  .heading-accent::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-12 h-1 rounded-full bg-secondary;
+  }
+
+  /* Wave dividers */
+  .wave-top {
+    @apply -mt-1 leading-none;
+  }
+
+  /* Cards */
+  .card-warm {
+    @apply bg-white rounded-2xl shadow-sm border border-linen-200 hover:shadow-md transition-shadow duration-300;
+  }
+
+  /* Buttons with warm shadow */
+  .btn-warm {
+    @apply shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  /* Trust bar item */
+  .trust-item {
+    @apply flex items-center gap-1.5 text-sm font-semibold text-neutral/80;
+  }
+
+  /* Prose for blog/page content */
+  .prose-warm {
+    @apply prose prose-neutral max-w-none;
+    @apply prose-headings:font-heading prose-headings:font-bold;
+    @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
+    @apply prose-img:rounded-2xl;
+    @apply prose-blockquote:border-l-secondary prose-blockquote:not-italic;
+    @apply prose-blockquote:font-heading prose-blockquote:text-xl prose-blockquote:text-neutral;
+  }
+
+  /* Stats */
+  .stat-big {
+    @apply font-heading text-5xl font-bold text-primary leading-none;
+  }
+
+  /* Step circle */
+  .step-circle {
+    @apply w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-heading font-bold text-lg flex-shrink-0;
+  }
+}

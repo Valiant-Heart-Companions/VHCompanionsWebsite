@@ -1,0 +1,362 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const featuredPosts = (await getCollection('blog', ({ data }) => data.featured))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title="Home">
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section
+    class="relative min-h-[92vh] flex items-center"
+    style="background-image: linear-gradient(to bottom right, rgba(42,79,59,0.72), rgba(45,36,22,0.78)), url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center 30%;"
+  >
+    <div class="section-container py-24 text-center text-white relative z-10 w-full">
+      <!-- Trust badge -->
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide mb-8">
+        <span class="text-accent">✓</span>
+        501(c)(3) Nonprofit · EIN 82-4410052 · Tax-Deductible Donations
+      </div>
+
+      <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6 [text-shadow:0_2px_20px_rgba(0,0,0,0.3)]">
+        Healing Begins<br class="hidden sm:block" />
+        <em class="not-italic text-[#e8a07a]">with a Heartbeat</em>
+      </h1>
+
+      <p class="text-xl sm:text-2xl text-white/88 max-w-2xl mx-auto mb-10 leading-relaxed">
+        We train specialized service dogs for survivors of sexual assault —
+        helping them reclaim independence, safety, and peace of mind.
+      </p>
+
+      <div class="flex flex-wrap gap-3 justify-center mb-12">
+        <a href="/apply" class="btn btn-accent rounded-full px-8 shadow-lg hover:shadow-xl transition-shadow text-base">
+          Apply for a Service Dog
+        </a>
+        <a href="/about" class="btn rounded-full px-8 bg-white/15 border-white/30 text-white hover:bg-white/25 text-base">
+          Our Story
+        </a>
+      </div>
+
+      <!-- Quick-pick donation widget -->
+      <div class="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 max-w-lg mx-auto">
+        <p class="text-xs font-bold tracking-widest uppercase text-white/70 mb-4">Support a survivor today</p>
+        <div class="flex flex-wrap gap-2 justify-center items-center">
+          {['$25', '$50', '$100', '$250'].map(amt => (
+            <a
+              href="/donate"
+              class="px-4 py-2 rounded-full border-2 border-accent text-accent font-bold text-sm hover:bg-accent hover:text-accent-content transition-all duration-200"
+            >
+              {amt}
+            </a>
+          ))}
+          <a href="/donate" class="btn btn-accent btn-sm rounded-full font-bold">
+            Other Amount →
+          </a>
+        </div>
+        <p class="text-xs text-white/50 mt-3">Every gift trains the next life-changing companion.</p>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/50" aria-hidden="true">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── TRUST BAR ──────────────────────────────────────────── -->
+  <div class="bg-white border-b border-linen-200 py-4">
+    <div class="section-container">
+      <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
+        {[
+          ['✓', '501(c)(3) Verified Nonprofit'],
+          ['✓', 'EIN: 82-4410052'],
+          ['✓', 'Tax-Deductible Donations'],
+          ['✓', 'Dogs Provided Free to Survivors'],
+          ['✓', '18 States Served'],
+        ].map(([icon, text]) => (
+          <li class="trust-item">
+            <span class="text-accent font-bold">{icon}</span>
+            <span class="text-sm font-semibold text-neutral/70">{text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── IMPACT STATS ────────────────────────────────────────── -->
+  <section class="py-20 bg-linen">
+    <div class="section-container text-center">
+      <h2 class="section-heading heading-accent mx-auto mb-3">The Change We're Making</h2>
+      <p class="section-subheading mx-auto mb-12">
+        Every number below represents a survivor whose life has been transformed.
+      </p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { num: '75+',    label: 'Service dogs placed', sub: 'with survivors across 18 states' },
+          { num: '92%',    label: 'Report improved QoL', sub: 'within the first year of placement' },
+          { num: '18',     label: 'States reached',       sub: 'and growing every year' },
+          { num: '3,500+', label: 'Training hours',       sub: 'invested in every single dog' },
+        ].map(({ num, label, sub }) => (
+          <div class="card-warm p-8 text-center">
+            <div class="stat-big mb-2">{num}</div>
+            <div class="font-heading font-semibold text-neutral text-base mb-1">{label}</div>
+            <div class="text-neutral/60 text-xs leading-relaxed">{sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WAVE ───────────────────────────────────────────────── -->
+  <div class="bg-linen overflow-hidden leading-none">
+    <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" class="block w-full" aria-hidden="true" preserveAspectRatio="none">
+      <path fill="white" d="M0,32L60,28C120,24,240,16,360,16C480,16,600,24,720,26.7C840,29,960,27,1080,22.7C1200,19,1320,13,1380,10.7L1440,8L1440,48L0,48Z"/>
+    </svg>
+  </div>
+
+  <!-- ── FEATURED STORY ─────────────────────────────────────── -->
+  <section class="py-20 bg-white">
+    <div class="section-container">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="relative">
+          <div
+            class="rounded-2xl overflow-hidden aspect-[4/3] shadow-xl"
+            style="background-image: url('https://images.unsplash.com/photo-1541599468348-e96984315921?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"
+            role="img"
+            aria-label="Person with their service dog partner"
+          ></div>
+          <!-- Floating quote badge -->
+          <div class="absolute -bottom-5 -right-5 hidden lg:block bg-secondary text-white rounded-2xl px-5 py-3 shadow-lg max-w-[200px]">
+            <p class="font-heading text-sm italic leading-snug">"She gave me my life back."</p>
+            <p class="text-xs text-white/70 mt-1">— Jamie, recipient since 2023</p>
+          </div>
+        </div>
+
+        <div>
+          <span class="badge badge-secondary badge-outline mb-4">Survivor Story</span>
+          <h2 class="section-heading heading-accent mb-6">
+            From Isolation to Independence
+          </h2>
+          <blockquote class="border-l-4 border-secondary pl-5 mb-6">
+            <p class="font-heading text-xl italic text-neutral/80 leading-relaxed">
+              "After my assault, I couldn't leave my apartment alone. The anxiety and
+              hypervigilance were overwhelming. Since receiving Bella, everything has changed.
+              She's not just a service dog — she's my lifeline to independence."
+            </p>
+          </blockquote>
+          <p class="text-neutral/70 mb-6 leading-relaxed">
+            Jamie is one of over 75 survivors whose lives have been transformed through our
+            program. Each service dog is individually trained to address their handler's
+            specific trauma responses — from nightmare interruption to crowd navigation to
+            deep pressure therapy during panic attacks.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/stories" class="btn btn-primary rounded-full">Read Survivor Stories</a>
+            <a href="/how-it-works" class="btn btn-outline btn-primary rounded-full">How It Works</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW WE HELP ────────────────────────────────────────── -->
+  <section class="py-20 bg-linen-100">
+    <div class="section-container">
+      <div class="text-center mb-12">
+        <h2 class="section-heading heading-accent mx-auto mb-3">How Our Dogs Help</h2>
+        <p class="section-subheading mx-auto">
+          Each dog is trained to address the specific trauma responses of their partner.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          {
+            icon: '🐾',
+            title: 'Trauma Interruption',
+            desc: 'Dogs are trained to interrupt nightmares, panic attacks, and flashback spirals — providing grounding physical contact and presence in the critical early moments.'
+          },
+          {
+            icon: '🛡️',
+            title: 'Personal Space & Safety',
+            desc: 'Creating buffer space in crowds, performing room-clearing checks, and alerting to approaching people from behind — restoring the sense of safety that trauma steals.'
+          },
+          {
+            icon: '🤝',
+            title: 'Long-Term Partnership',
+            desc: "Our relationship doesn't end at placement. We provide ongoing support, refresher training, and a community of fellow recipients for the lifetime of the partnership."
+          },
+        ].map(({ icon, title, desc }) => (
+          <div class="card-warm p-8">
+            <div class="text-4xl mb-4" aria-hidden="true">{icon}</div>
+            <h3 class="font-heading font-bold text-xl text-neutral mb-3">{title}</h3>
+            <p class="text-neutral/70 leading-relaxed text-sm">{desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-10">
+        <a href="/how-it-works" class="btn btn-primary rounded-full px-8">
+          See Our Full Process →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GIFT IMPACT ────────────────────────────────────────── -->
+  <section class="py-24" style="background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 100%);">
+    <div class="section-container text-white text-center">
+      <h2 class="font-heading text-4xl font-bold mb-3 text-white">Your Gift Changes a Life</h2>
+      <div class="w-12 h-1 bg-accent rounded-full mx-auto mb-4"></div>
+      <p class="text-white/75 text-lg mb-12 max-w-xl mx-auto">
+        It costs approximately $25,000 to select, raise, train, and place each dog.
+        See exactly what your gift does.
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 max-w-4xl mx-auto">
+        {[
+          { amt: '$25',    desc: 'One week of nutritious food & enrichment for a dog in training' },
+          { amt: '$100',   desc: 'One specialized training session with a certified trauma-response trainer' },
+          { amt: '$500',   desc: 'A full month of board-and-train program covering all costs' },
+          { amt: '$2,500', desc: 'Complete harness, vest, gear & medical kit for one placement' },
+        ].map(({ amt, desc }) => (
+          <a href="/donate" class="block bg-white/10 hover:bg-white/18 border border-white/20 rounded-2xl p-6 text-center transition-all duration-200 hover:-translate-y-1 group">
+            <div class="font-heading text-3xl font-bold text-accent mb-3 group-hover:scale-105 transition-transform">{amt}</div>
+            <p class="text-white/80 text-sm leading-relaxed">{desc}</p>
+          </a>
+        ))}
+      </div>
+
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/donate" class="btn btn-accent rounded-full px-8 shadow-lg">
+          ♥ Become a Monthly Donor
+        </a>
+        <a href="/donate" class="btn rounded-full px-8 bg-white/15 border-white/30 text-white hover:bg-white/25">
+          Make a One-Time Gift
+        </a>
+      </div>
+      <p class="text-white/45 text-xs mt-4">
+        501(c)(3) nonprofit (EIN 82-4410052) · All donations tax-deductible · Secure checkout
+      </p>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────────────────── -->
+  <section class="py-20 bg-linen">
+    <div class="section-container">
+      <div class="text-center mb-12">
+        <h2 class="section-heading heading-accent mx-auto mb-3">From Our Recipients</h2>
+        <p class="section-subheading mx-auto">The impact of a service dog is best told in their own words.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          {
+            quote: "The nightmares were the worst part for me. I was afraid to sleep. My service dog, Max, is trained to wake me during nightmares and provide deep pressure therapy. For the first time in years, I'm getting restful sleep.",
+            name: 'Sam',
+            detail: 'Partnered with Max since 2022',
+          },
+          {
+            quote: "Having Luna alert me when someone approaches from behind has eliminated countless panic attacks. It's hard to explain to someone who hasn't experienced trauma how valuable this simple task is. I finally feel safe again.",
+            name: 'Taylor',
+            detail: 'Partnered with Luna since 2024',
+          },
+          {
+            quote: "With Cooper by my side, I completed my degree and now work as an advocate for other survivors. He didn't just help me heal — he helped me become who I was always meant to be.",
+            name: 'Sarah',
+            detail: 'Partnered with Cooper since 2021',
+          },
+        ].map(({ quote, name, detail }) => (
+          <div class="card-warm p-8 relative">
+            <div class="font-heading text-6xl text-secondary/15 absolute top-4 left-6 leading-none select-none" aria-hidden="true">"</div>
+            <p class="text-neutral/80 italic leading-relaxed relative z-10 mb-6 text-sm">{quote}</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-secondary/15 flex items-center justify-center font-heading font-bold text-secondary flex-shrink-0">
+                {name[0]}
+              </div>
+              <div>
+                <div class="font-semibold text-neutral text-sm">{name}</div>
+                <div class="text-neutral/55 text-xs">{detail}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/stories" class="btn btn-outline btn-primary rounded-full">Read All Stories →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BLOG PREVIEW ───────────────────────────────────────── -->
+  {featuredPosts.length > 0 && (
+    <section class="py-20 bg-white">
+      <div class="section-container">
+        <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+          <div>
+            <h2 class="section-heading heading-accent mb-2">From the Blog</h2>
+            <p class="text-neutral/60 mt-1">Research, resources, and stories from our community.</p>
+          </div>
+          <a href="/blog" class="btn btn-outline btn-primary btn-sm rounded-full">All Articles →</a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          {featuredPosts.map(post => (
+            <article class="card-warm overflow-hidden group">
+              {post.data.image && (
+                <div
+                  class="h-44 bg-cover bg-center"
+                  style={`background-image: url('${post.data.image}')`}
+                  role="img"
+                  aria-label={post.data.imageAlt ?? post.data.title}
+                ></div>
+              )}
+              <div class="p-6">
+                <span class="badge badge-outline badge-sm mb-3 text-xs font-semibold uppercase tracking-wide">
+                  {post.data.category}
+                </span>
+                <h3 class="font-heading font-bold text-neutral text-lg leading-snug mb-2 group-hover:text-primary transition-colors">
+                  <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                </h3>
+                <p class="text-neutral/65 text-sm leading-relaxed line-clamp-3 mb-4">{post.data.description}</p>
+                <a href={`/blog/${post.slug}`} class="text-primary font-semibold text-sm hover:underline">
+                  Read article →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ── FINAL CTA ──────────────────────────────────────────── -->
+  <section class="py-20 bg-secondary text-white text-center">
+    <div class="section-container max-w-2xl">
+      <h2 class="font-heading text-4xl font-bold mb-4 text-white">
+        Ready to Begin Your Healing Journey?
+      </h2>
+      <p class="text-white/80 text-lg mb-10 leading-relaxed">
+        Whether you're a survivor seeking a service dog, someone who wants to help,
+        or a donor looking to make a real difference — we'd love to connect.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/apply" class="btn btn-accent rounded-full px-8 shadow-lg text-base">
+          Apply for a Service Dog
+        </a>
+        <a href="/donate" class="btn rounded-full px-8 bg-white/15 border-white/30 text-white hover:bg-white/25 text-base">
+          ♥ Support Our Work
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

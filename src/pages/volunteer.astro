@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Volunteer"
+  description="Get involved with Valiant Heart Companions. From puppy raising to professional services, there are many ways to support our mission beyond donating."
+>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- Hero -->
+  <section
+    class="relative py-24 text-white text-center"
+    style="background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 100%);"
+  >
+    <div class="section-container">
+      <div class="badge badge-accent badge-outline mb-6">Get Involved</div>
+      <h1 class="font-heading text-5xl md:text-6xl font-bold mb-4 text-white">
+        Your Time Can<br class="hidden sm:block" />Change a Life
+      </h1>
+      <p class="text-white/80 text-xl max-w-2xl mx-auto">
+        There are many ways to support our work beyond donating.
+        Every hour of volunteer time helps us train more dogs and serve more survivors.
+      </p>
+    </div>
+  </section>
+
+  <!-- Volunteer roles -->
+  <section class="py-20 bg-white">
+    <div class="section-container">
+      <div class="text-center mb-12">
+        <h2 class="section-heading heading-accent mx-auto mb-3">Ways to Help</h2>
+        <p class="section-subheading mx-auto">Find the role that fits your skills and schedule.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          {
+            icon: '🐶',
+            title: 'Puppy Raiser',
+            commitment: '12–18 months',
+            desc: 'Raise one of our future service dogs from 8 weeks to about 18 months. Provide socialization, basic training, and a loving home while we do the specialized training.',
+            match: 'Best for: Families, retirees, work-from-home individuals',
+          },
+          {
+            icon: '🚗',
+            title: 'Transport Volunteer',
+            commitment: 'As needed',
+            desc: 'Drive dogs to and from veterinary appointments, training sessions, and evaluation events within the Lakeland, FL area.',
+            match: 'Best for: Local volunteers with reliable transportation',
+          },
+          {
+            icon: '📣',
+            title: 'Community Ambassador',
+            commitment: '2–4 hrs/month',
+            desc: 'Represent Valiant Heart Companions at community events, fundraisers, and speaking engagements. Share our mission with potential donors, applicants, and partners.',
+            match: 'Best for: Outgoing communicators, public speakers',
+          },
+          {
+            icon: '💻',
+            title: 'Pro Bono Professional',
+            commitment: 'Project-based',
+            desc: 'Offer your professional skills — legal, accounting, marketing, photography, web development, graphic design — to help us operate more effectively.',
+            match: 'Best for: Professionals with skills to donate',
+          },
+          {
+            icon: '✍️',
+            title: 'Grant Writer',
+            commitment: '5–10 hrs/month',
+            desc: 'Research and write grant applications to foundations and government programs to expand our funding base and serve more survivors.',
+            match: 'Best for: Writers, fundraising professionals',
+          },
+          {
+            icon: '📸',
+            title: 'Photographer / Videographer',
+            commitment: 'As needed',
+            desc: 'Capture photos and video of our dogs, training sessions, and community events to support our website, social media, and fundraising materials.',
+            match: 'Best for: Photography/video professionals or enthusiasts',
+          },
+        ].map(({ icon, title, commitment, desc, match }) => (
+          <div class="card-warm p-6">
+            <div class="text-3xl mb-3" aria-hidden="true">{icon}</div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-heading font-bold text-neutral text-lg">{title}</h3>
+              <span class="badge badge-sm badge-outline text-xs whitespace-nowrap">{commitment}</span>
+            </div>
+            <p class="text-neutral/70 text-sm leading-relaxed mb-3">{desc}</p>
+            <p class="text-neutral/50 text-xs italic">{match}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sign up -->
+  <section class="py-16 bg-linen">
+    <div class="section-container max-w-2xl text-center">
+      <h2 class="section-heading heading-accent mx-auto mb-3">Ready to Volunteer?</h2>
+      <p class="section-subheading mx-auto mb-8">
+        Tell us a little about yourself and the role you're interested in.
+        We'll get back to you within one week.
+      </p>
+      <div class="card-warm p-8">
+        <a
+          href="mailto:info@vhcompanions.org?subject=Volunteer%20Interest"
+          class="btn btn-primary rounded-full px-10 text-base"
+        >
+          Email Us to Volunteer
+        </a>
+        <p class="text-neutral/55 text-xs mt-4">
+          Please include your name, location, and which volunteer role interests you most.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate nudge -->
+  <section class="py-14 bg-secondary text-white text-center">
+    <div class="section-container max-w-xl">
+      <h3 class="font-heading text-2xl font-bold text-white mb-2">Can't Volunteer Right Now?</h3>
+      <p class="text-white/75 mb-6 text-sm">
+        A financial gift is always welcome and goes directly toward training more dogs.
+        Even $25 funds one week of food and enrichment.
+      </p>
+      <a href="/donate" class="btn btn-accent rounded-full px-8">♥ Make a Gift Instead</a>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

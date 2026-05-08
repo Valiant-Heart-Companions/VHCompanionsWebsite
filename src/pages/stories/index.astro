@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Survivor Stories"
+  description="Read how Valiant Heart Companions service dogs have transformed the lives of sexual assault survivors. Real stories of healing, independence, and hope."
+>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- Hero -->
+  <section
+    class="relative py-24 text-white text-center"
+    style="background: linear-gradient(135deg, #2a4f3b 0%, #3b6e52 100%);"
+  >
+    <div class="section-container relative z-10">
+      <div class="badge badge-accent badge-outline mb-6">Real Stories</div>
+      <h1 class="font-heading text-5xl md:text-6xl font-bold mb-4 text-white">
+        Lives Changed
+      </h1>
+      <p class="text-white/80 text-xl max-w-2xl mx-auto">
+        These are the stories of survivors who took a chance on healing —
+        and the dogs who met them exactly where they were.
+      </p>
+    </div>
+  </section>
+
+  <!-- Content note -->
+  <div class="bg-linen border-b border-linen-200 py-4">
+    <div class="section-container max-w-3xl">
+      <p class="text-sm text-neutral/65 text-center">
+        <strong class="text-neutral">A note:</strong> All stories are shared with explicit consent.
+        Names and identifying details have been changed to protect privacy.
+        Stories may include references to trauma and recovery.
+      </p>
+    </div>
+  </div>
+
+  <!-- Featured story -->
+  <section class="py-20 bg-white">
+    <div class="section-container max-w-4xl">
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+        <div
+          class="rounded-2xl overflow-hidden aspect-[4/3] shadow-lg"
+          style="background-image: url('https://images.unsplash.com/photo-1541599468348-e96984315921?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"
+          role="img"
+          aria-label="Person walking with a service dog outdoors"
+        ></div>
+        <div>
+          <span class="badge badge-secondary badge-outline mb-4">Featured Story</span>
+          <h2 class="font-heading text-3xl font-bold text-neutral mb-4">
+            "I can go to the grocery store now. That might sound small, but it was my whole world."
+          </h2>
+          <p class="text-neutral/70 leading-relaxed mb-4">
+            Sarah was 34 when she applied. For six years after her assault, she had barely left her apartment.
+            Crowded spaces triggered panic attacks. Being approached from behind could floor her for days.
+            She had tried therapy, medication, and support groups — all helpful, but none enough to give her
+            back the ordinary parts of life she missed most.
+          </p>
+          <p class="text-neutral/70 leading-relaxed mb-6">
+            Within three months of being placed with her service dog, Atlas, Sarah had returned to work
+            part-time. Within a year, she had traveled by plane for the first time since her assault.
+            "He doesn't fix what happened," she says. "But he makes me feel safe enough to live again."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-heading font-bold">S</div>
+            <div>
+              <div class="font-semibold text-neutral text-sm">Sarah</div>
+              <div class="text-neutral/55 text-xs">Recipient, 2022 · Tennessee</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story grid -->
+      <div class="grid md:grid-cols-2 gap-8">
+        {[
+          {
+            initial: 'M',
+            name: 'Marcus',
+            year: '2021',
+            state: 'Ohio',
+            quote: 'People don\'t always believe male survivors need this kind of help. Ranger didn\'t care about any of that. He just showed up for me every single day.',
+            detail: 'Marcus struggled for years with hypervigilance and nightmares before applying. His service dog, Ranger, learned nightmare interruption, room-clearing, and grounding tasks tailored specifically to his triggers.',
+          },
+          {
+            initial: 'J',
+            name: 'Jamie',
+            year: '2023',
+            state: 'Washington',
+            quote: 'I spent three years unable to be in the same room as most people. My dog gave me back my social life — slowly, but surely.',
+            detail: 'Jamie works with their service dog as a crowd buffer and advance alert system — skills that have allowed them to return to college, attend family events, and rebuild relationships that had been strained by isolation.',
+          },
+          {
+            initial: 'R',
+            name: 'Rosa',
+            year: '2020',
+            state: 'Florida',
+            quote: 'She sleeps at the foot of my bed. For the first time in four years, I sleep through the night.',
+            detail: 'Rosa\'s dog, Lily, was trained for deep pressure therapy during anxiety episodes and nightmare interruption. Rosa describes the first full night of sleep as "the moment I knew my life could actually be different."',
+          },
+          {
+            initial: 'D',
+            name: 'Devon',
+            year: '2022',
+            state: 'Colorado',
+            quote: 'I kept thinking I didn\'t deserve this — that other people needed it more. My therapist helped me apply anyway. Best decision I ever made.',
+            detail: 'Devon\'s dog supports them with medication reminders, grounding during dissociative episodes, and a tactile anchor during flashbacks. Devon now volunteers as a peer mentor for new applicants.',
+          },
+        ].map(({ initial, name, year, state, quote, detail }) => (
+          <div class="card-warm p-7">
+            <blockquote class="text-neutral/80 italic leading-relaxed text-base mb-5 relative">
+              <span class="text-5xl text-primary/15 font-heading leading-none absolute -top-2 -left-1" aria-hidden="true">"</span>
+              <span class="relative z-10 pl-5">{quote}</span>
+            </blockquote>
+            <p class="text-neutral/60 text-sm leading-relaxed mb-5">{detail}</p>
+            <div class="flex items-center gap-3 pt-4 border-t border-linen-200">
+              <div class="w-9 h-9 rounded-full bg-primary/15 flex items-center justify-center text-primary font-heading font-bold text-sm flex-shrink-0">{initial}</div>
+              <div>
+                <div class="font-semibold text-neutral text-sm">{name}</div>
+                <div class="text-neutral/50 text-xs">Recipient, {year} · {state}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats section -->
+  <section class="py-16 bg-linen">
+    <div class="section-container max-w-3xl text-center">
+      <h2 class="section-heading heading-accent mx-auto mb-10">The Impact, In Numbers</h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {[
+          { stat: '94%', label: 'of recipients report reduced PTSD symptom severity within 6 months' },
+          { stat: '78%', label: 'returned to work or school within one year of placement' },
+          { stat: '18', label: 'US states where our dogs are currently working' },
+        ].map(({ stat, label }) => (
+          <div class="bg-white rounded-2xl p-6 border border-linen-200">
+            <div class="stat-big mb-2">{stat}</div>
+            <div class="text-neutral/65 text-sm leading-relaxed">{label}</div>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-neutral/45 mt-6">Based on self-reported recipient surveys, 2019–2024.</p>
+    </div>
+  </section>
+
+  <!-- Share your story -->
+  <section class="py-16 bg-white">
+    <div class="section-container max-w-2xl text-center">
+      <h2 class="section-heading heading-accent mx-auto mb-3">Share Your Story</h2>
+      <p class="section-subheading mx-auto mb-8">
+        Are you a Valiant Heart Companions recipient? Your story — shared on your terms — can give
+        hope to survivors who are still deciding whether to apply.
+      </p>
+      <div class="card-warm p-8">
+        <p class="text-neutral/65 text-sm leading-relaxed mb-6">
+          We will never share your story without your explicit, written consent.
+          You choose what to include, what to omit, and whether to use your real name.
+        </p>
+        <a
+          href="mailto:info@vhcompanions.org?subject=I%20want%20to%20share%20my%20story"
+          class="btn btn-primary rounded-full px-10"
+        >
+          Email Us Your Story
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply CTA -->
+  <section class="py-16 bg-secondary text-white text-center">
+    <div class="section-container max-w-xl">
+      <h2 class="font-heading text-3xl font-bold text-white mb-3">Ready to Write Your Own Story?</h2>
+      <p class="text-white/75 mb-8 text-sm">
+        Applications are open, free, and reviewed personally by our team.
+        There's no wrong answer. There's only a first step.
+      </p>
+      <a href="/apply" class="btn btn-accent rounded-full px-10 text-base">Apply for a Service Dog →</a>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
