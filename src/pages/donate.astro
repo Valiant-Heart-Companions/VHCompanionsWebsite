@@ -78,17 +78,26 @@ import Footer from '../components/Footer.astro';
               <p class="text-white/75 text-sm">Secure · Tax-deductible · No account required</p>
             </div>
 
-            <!-- Qgiv embed -->
-            <div class="p-2">
-              <iframe
-                title="Donation Form"
-                src="https://secure.qgiv.com/for/vhcompanions/event/51178/"
-                seamless
-                class="w-full rounded-lg"
-                style="min-height: 600px; border: none;"
-                loading="lazy"
-              ></iframe>
+            <!-- Qgiv embed widget -->
+            <div class="p-4">
+              <div
+                class="qgiv-embed-container"
+                data-qgiv-embed="true"
+                data-embed-id="51178"
+                data-embed="https://secure.qgiv.com/for/vhc/embed/51178/"
+                data-width="100%"
+              ></div>
             </div>
+            <script>
+              (function(w, d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://secure.qgiv.com/resources/core/js/embed.js";
+                fjs.parentNode.insertBefore(js, fjs);
+              })(window, document, 'script', 'qgiv-embedjs');
+            </script>
           </div>
         </div>
 
